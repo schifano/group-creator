@@ -3,11 +3,13 @@ package ilstu.edu;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
+import javax.swing.JFileChooser;
 
 /**
  * Description: GroupCreatorGUI that generates the GUI that allows a user to
@@ -17,6 +19,7 @@ import javax.swing.JPanel;
 
 public class GroupCreatorGUI extends JFrame {
 	
+	// Create new Sort Panel object
 	private GroupCreatorSortPanel groupCreatorSortPanel;
 	
 	// Create button panel and buttons
@@ -24,6 +27,9 @@ public class GroupCreatorGUI extends JFrame {
 	private JButton createGroupButton;
 	private JButton backButton;
 	private JButton cancelButton;
+	
+	// Create new file chooser object
+	private JFileChooser fc;
 	
 	/**
 	 * Constructor
@@ -86,8 +92,10 @@ public class GroupCreatorGUI extends JFrame {
 	 */
 	private class CreateGroupButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e)
-	      {
-	         
+		{
+			fc= new JFileChooser();
+	    
+
 
 	      }
 	}
