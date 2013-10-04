@@ -76,37 +76,20 @@ public class Student {
 	 * @return true The two students are identical
 	 * @return false The two students are not identical
 	 */
-	public boolean checkStudent(Student student1, Student student2) {
+	public boolean checkStudent(Student student) {
 		
 		// get student names and convert to lower case for easy comparison
-		String firstName1 = student1.getFirstName().toLowerCase();
-		String lastName1 = student1.getLastName().toLowerCase();
-		
-		String firstName2 = student2.getFirstName().toLowerCase();
-		String lastName2 = student2.getFirstName().toLowerCase();		
-		
+		String firstName = student.getFirstName().toLowerCase();
+		String lastName = student.getLastName().toLowerCase();
+	
 		// compare first names
-		if (firstName1.equals(firstName2)) {
-			if(lastName1.equals(lastName2)) {
+		if (this.firstName.equals(firstName)) {
+			if(this.lastName.equals(lastName)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
