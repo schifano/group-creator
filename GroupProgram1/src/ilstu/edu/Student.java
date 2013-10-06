@@ -1,4 +1,4 @@
-package ilstu.edu;
+package edu.ilstu;
 
 /**
  * Description: Student class used to create new student objects.
@@ -81,10 +81,16 @@ public class Student {
 		// get student names and convert to lower case for easy comparison
 		String firstName = student.getFirstName().toLowerCase();
 		String lastName = student.getLastName().toLowerCase();
+		
+		// gets the current calling object's first and last names and coverts to lower case
+		String firstName1 = this.getFirstName().toLowerCase();
+		String lastName1 = this.getLastName().toLowerCase();
+		
 	
 		// compare first names
-		if (this.firstName.equals(firstName)) {
-			if(this.lastName.equals(lastName)) {
+		if (firstName1.equals(firstName)) {
+			// compare last names
+			if(lastName1.equals(lastName)) {
 				return true;
 			}
 		}
