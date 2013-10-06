@@ -58,6 +58,7 @@ public class Group extends ArrayList<Student> {
 	 * @return boolean indicator which is true if the student exists in the
 	 *         Group
 	 */
+	
 	public boolean containsStudent(Student stu1) {
 		boolean inGroup;
 		inGroup = false;
@@ -68,6 +69,30 @@ public class Group extends ArrayList<Student> {
 
 		return inGroup;
 
+	}
+	
+	public boolean removeStudent(Student stu1) 
+	{
+		boolean removed;
+		removed = false;
+		System.out.println("in method");
+		Student tempStudent;
+		System.out.println(this.getGroupSize());
+		for (int i = 0; i < this.getGroupSize() && ! removed; i++) 
+		{
+			System.out.println(i);
+			System.out.println("In for loop");
+			tempStudent = this.get(i);
+			System.out.println(stu1);
+			System.out.println(tempStudent);
+			if (tempStudent.checkStudent(stu1))
+			{
+				removed = true;
+				this.remove(i);
+			}
+		}
+
+		return removed;
 	}
 
 	public int getNumberFemalesInGroup() {
