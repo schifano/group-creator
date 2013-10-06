@@ -10,7 +10,6 @@ package edu.ilstu;
  * Instructor: Dr. Califf
  */
 import java.util.Random;
-import java.util.ArrayList;
 
 /**
  * @author John Boomgarden
@@ -35,81 +34,76 @@ public class GroupListApp {
 		genderBiased = false;
 	}
 
-	public void CreateGroupList(Group studentList, GroupList lastGroup)
-	 {
+	public void CreateGroupList(Group studentList, GroupList lastGroup) {
 		int oldIndex = 0;
-		int tempIndex = 0;
 		boolean studentInGroup, studentAdded = false;
 		GroupList groups = new GroupList();
 		Random rand = new Random();
-		
-		// figure the total number of groups if the user selected the option to specify the number in each group
-		if (this.numGroups == 0  && this.groupSize != 0)
-			this.setNumGroups(this.groupSize,studentList.size() );
-		
-		// figure the total size of each group if the user specified the total number of groups
+
+		// figure the total number of groups if the user selected the option to
+		// specify the number in each group
+		if (this.numGroups == 0 && this.groupSize != 0)
+			this.setNumGroups(this.groupSize, studentList.size());
+
+		// figure the total size of each group if the user specified the total
+		// number of groups
 		if (this.groupSize == 0 && this.numGroups != 0)
-			this.setGroupSize(this.numGroups,studentList.size() );
-		
-		if (genderBiased)
-		{
+			this.setGroupSize(this.numGroups, studentList.size());
+
+		if (genderBiased) {
 			int totalFemales = 0;
-		    // loop through all Student objects in the studentList.
+			// loop through all Student objects in the studentList.
 			// and count how many total females there are.
-			for (int i = 0; i < studentList.size(); i ++)
-			{
+			for (int i = 0; i < studentList.size(); i++) {
 				if (studentList.get(i).getGender() == "F")
-					totalFemales ++;
+					totalFemales++;
 			}
-			// once we know how many total females there are, then we will divide that
+			// once we know how many total females there are, then we will
+			// divide that
 			// number by the total number of groups.
-			
-			if (totalFemales % numGroups == 0)
-			{
-				this.numFemales = totalFemales/numGroups;
+
+			if (totalFemales % numGroups == 0) {
+				this.numFemales = totalFemales / numGroups;
 				this.numMales = groupSize - this.numFemales;
-			}
-			else
-			{
-				this.numFemales = totalFemales/numGroups + 1;
+			} else {
+				this.numFemales = totalFemales / numGroups + 1;
 				this.numMales = groupSize - this.numFemales + 1;
 			}
 		}
-		
-	    // loop through all Student objects in the studentList.
+
+		// loop through all Student objects in the studentList.
 		// studentList contains all the students in the lab class
-		for (int i = 0; i < studentList.size(); i ++)
-		{
-			while (!studentAdded)
-			{
-			//generate random number for index of group to try adding student to
-			int newIndex = rand.nextInt(numGroups) - 1;
-			
-			// find which labGroup the student was in the last time
-			oldIndex = lastGroup.findStudent(studentList.get(i));
-			
-			studentInGroup = false;
-			studentAdded = false;
-			// if oldIndex is -1, that means the specified student was not in any labGroup last time
-			if(oldIndex == -1)
+		for (int i = 0; i < studentList.size(); i++) {
+			while (!studentAdded) {
+				// generate random number for index of group to try adding
+				// student to
+				int newIndex = rand.nextInt(numGroups) - 1;
+
+				// find which labGroup the student was in the last time
+				oldIndex = lastGroup.findStudent(studentList.get(i));
+
 				studentInGroup = false;
-			else
-			{
-				for(int j=0; j<lastGroup.get(oldIndex).size();j++)
-				{
-					if (lastGroup.get(oldIndex).containsStudent(groups.get(newIndex)
-						studentInGroup = true;
+				studentAdded = false;
+				// if oldIndex is -1, that means the specified student was not
+				// in any labGroup last time
+				if (oldIndex == -1)
+					studentInGroup = false;
+				else {
+					for (int j = 0; j < lastGroup.get(oldIndex).size(); j++) {
+						if (lastGroup.get(oldIndex).containsStudent(
+								groups.get(newIndex).get(j)))
+							studentInGroup = true;
+					}
+					if (!studentInGroup
+							&& correctNumbers(groups.get(newIndex),
+									studentList.get(i))) {
+						studentAdded = true;
+						groups.get(newIndex).addStudent(studentList.get(i));
+					}
+
 				}
-				if(! studentInGroup && correctNumbers)
-				{
-					studentAdded = true;
-					groups.get(newIndex).addStudent(studentList.get(i));
-				}
-				else
-					while 
 			}
-			}
-				
+
 		}
 	}
 
