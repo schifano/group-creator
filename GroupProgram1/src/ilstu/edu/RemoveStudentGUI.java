@@ -2,7 +2,10 @@ package edu.ilstu;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +29,10 @@ public class RemoveStudentGUI extends JFrame
 	JLabel lNameLabel;
 	JTextField lNameField;
 	
+	JPanel buttonPanel;
+	JButton removeButton;
+	JButton cancelButton;
+	
 	/**
 	 * creates the remove student interface
 	 */
@@ -40,10 +47,12 @@ public class RemoveStudentGUI extends JFrame
 		//builds the panels
 		buildFirstNamePanel();
 		buildLastNamePanel();
+		buildButtonPanel();
 		
 		//adds the panels
 		add(fNamePanel);
 		add(lNamePanel);
+		add(buttonPanel);
 		
 		pack();
 		setVisible(true);	
@@ -80,6 +89,28 @@ public class RemoveStudentGUI extends JFrame
 		lNamePanel.add(lNameLabel);
 		lNamePanel.add(lNameField);
 	}
+	
+	public void buildButtonPanel()
+	{
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		
+		removeButton = new JButton("Remove");
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new cancelListener());
+		
+		buttonPanel.add(removeButton);
+		buttonPanel.add(cancelButton);
+	}
+	
+    public class cancelListener implements ActionListener
+    {
+    	public void actionPerformed(ActionEvent e)
+        {	
+    		dispose();
+        }
+    }
 	
 	public static void main(String [] args)
 	{

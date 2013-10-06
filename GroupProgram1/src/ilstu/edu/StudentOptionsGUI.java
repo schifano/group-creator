@@ -20,7 +20,6 @@ import javax.swing.JTextField;
 /**
  * This class is the GUI for student list options
  * @author Corbin John and Rachel
- *
  */
 public class StudentOptionsGUI extends JFrame
 {	
@@ -153,6 +152,14 @@ public class StudentOptionsGUI extends JFrame
 		bottomPanel.add(backButton);
 		bottomPanel.add(saveButton);
 		bottomPanel.add(launchGroupButton);	
+	}
+	
+	private class saveChangesListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			
+		}
 	}
 	
     private class addStudentListener implements ActionListener

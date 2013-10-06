@@ -2,11 +2,16 @@ package edu.ilstu;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import edu.ilstu.RemoveStudentGUI.cancelListener;
 
 
 /**
@@ -17,14 +22,18 @@ import javax.swing.JTextField;
 public class AddStudentGUI extends JFrame 
 {
 	//assets of the first name panel
-	JPanel fNamePanel; 
-	JLabel fNameLabel;
-	JTextField fNameField;
+	private JPanel fNamePanel; 
+	private JLabel fNameLabel;
+	private JTextField fNameField;
 	
 	//assets of the last name panel
-	JPanel lNamePanel;
-	JLabel lNameLabel;
-	JTextField lNameField;
+	private JPanel lNamePanel;
+	private JLabel lNameLabel;
+	private JTextField lNameField;
+	
+	private JPanel buttonPanel;
+	private JButton addButton;
+	private JButton cancelButton;
 	
 	/**
 	 * Default Constructor
@@ -40,11 +49,12 @@ public class AddStudentGUI extends JFrame
 		//builds panels
 		buildFirstNamePanel();
 		buildLastNamePanel();
+		buildButtonPanel();
 		
 		//adds panels
 		add(fNamePanel);
 		add(lNamePanel);
-		
+		add(buttonPanel);
 		pack();
 		setVisible(true);
 		
@@ -81,6 +91,29 @@ public class AddStudentGUI extends JFrame
 		lNamePanel.add(lNameLabel);
 		lNamePanel.add(lNameField);
 	}
+	
+	public void buildButtonPanel()
+	{
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		
+		addButton = new JButton("Add");
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new cancelListener());
+		
+		buttonPanel.add(addButton);
+		buttonPanel.add(cancelButton);
+	}
+	
+    private class cancelListener implements ActionListener
+    {
+    	public void actionPerformed(ActionEvent e)
+        {	
+    		dispose();
+        }
+    }
+	
 	
 	public static void main(String [] args)
 	{
