@@ -69,6 +69,19 @@ public class Group extends ArrayList<Student> {
 	public void addStudent(Student stu1) {
 		studentList.add(stu1);
 	}
+	
+	/**
+	 * This method will add a Student object to the arrayList
+	 * by passing in only the name and gender Strings
+	 */
+	public void addStudent(String firstName, String lastName, String gender) 
+	{
+		Student stu1 = new Student();
+		stu1.setFirstName(firstName);
+		stu1.setLastName(lastName);
+		stu1.setGender(gender);
+		this.addStudent(stu1);
+	}
 
 	/**
 	 * This method will return the number of Students contained in the group
