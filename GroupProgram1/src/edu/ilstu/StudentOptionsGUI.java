@@ -179,6 +179,7 @@ public class StudentOptionsGUI extends JFrame
     	public void actionPerformed(ActionEvent e)
         {	
     		addStudent = new AddStudentGUI();
+    		
         }
     }
     

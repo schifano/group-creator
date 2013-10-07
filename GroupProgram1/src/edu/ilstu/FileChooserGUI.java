@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -32,13 +34,14 @@ public class FileChooserGUI extends JFrame
     private JLabel fileLabel;
     private JTextField fileField;
     
+    private File newFile;
+    private PrintWriter out;
+    
     //an instance of the studentOptionsGUI
     private StudentOptionsGUI studentGUI;
-    private File file;
     
     // file chooser
     private final JFileChooser fc = new JFileChooser(); 
-    private String filePath;
     
     /**
      * default constructor
@@ -112,8 +115,20 @@ public class FileChooserGUI extends JFrame
     	public void actionPerformed(ActionEvent e)
         {	
     		fc.showSaveDialog(filePanel);
-    		studentGUI = new StudentOptionsGUI(fc.getSelectedFile());
-    		dispose();
+    		newFile = fc.getSelectedFile();
+    		
+    		try {
+					out = new PrintWriter(newFile);
+		    		out.close();
+		    		
+		    		studentGUI = new StudentOptionsGUI(newFile);
+		    		dispose();
+				} 
+    		catch (FileNotFoundException e1) 
+    		{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         }
     }
     

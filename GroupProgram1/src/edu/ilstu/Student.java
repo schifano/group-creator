@@ -34,7 +34,8 @@ public class Student {
 	/**
 	 * Method that sets the first name of a student.
 	 */
-	public void setFirstName(String name) {
+	public void setFirstName(String name) 
+	{
 		this.firstName = name;
 	}
 	

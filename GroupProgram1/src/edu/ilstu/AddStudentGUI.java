@@ -5,10 +5,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import edu.ilstu.RemoveStudentGUI.cancelListener;
@@ -25,15 +27,22 @@ public class AddStudentGUI extends JFrame
 	private JPanel fNamePanel; 
 	private JLabel fNameLabel;
 	private JTextField fNameField;
+	private String fName;
 	
 	//assets of the last name panel
 	private JPanel lNamePanel;
 	private JLabel lNameLabel;
 	private JTextField lNameField;
+	private String lName;
 	
 	private JPanel buttonPanel;
 	private JButton addButton;
 	private JButton cancelButton;
+	
+	private JPanel genderPanel;
+	private ButtonGroup genderButtonGroup;
+	private JRadioButton male;
+	private JRadioButton female;
 	
 	/**
 	 * Default Constructor
@@ -50,14 +59,16 @@ public class AddStudentGUI extends JFrame
 		buildFirstNamePanel();
 		buildLastNamePanel();
 		buildButtonPanel();
+		buildGenderPanel();
 		
 		//adds panels
 		add(fNamePanel);
 		add(lNamePanel);
+		add(genderPanel);
 		add(buttonPanel);
+		
 		pack();
 		setVisible(true);
-		
 	}
 	
 	/**
@@ -92,12 +103,29 @@ public class AddStudentGUI extends JFrame
 		lNamePanel.add(lNameField);
 	}
 	
+	public void buildGenderPanel()
+	{
+		genderPanel = new JPanel();
+		genderPanel.setLayout(new FlowLayout());
+		
+		male = new JRadioButton("male");
+		female = new JRadioButton("female");
+		
+		genderButtonGroup = new ButtonGroup();
+		genderButtonGroup.add(male);
+		genderButtonGroup.add(female);
+		
+		genderPanel.add(male);
+		genderPanel.add(female);
+	}
+	
 	public void buildButtonPanel()
 	{
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
 		
 		addButton = new JButton("Add");
+		addButton.addActionListener(new addStudentListener());
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new cancelListener());
@@ -113,6 +141,18 @@ public class AddStudentGUI extends JFrame
     		dispose();
         }
     }
+    
+    private class addStudentListener  implements ActionListener
+    {
+    	public void actionPerformed(ActionEvent e)
+        {	
+
+    		
+    		fName = fNameField.getText();
+    		lName = lNameField.getText();
+    		
+        }
+    } 
 	
 	
 	public static void main(String [] args)
