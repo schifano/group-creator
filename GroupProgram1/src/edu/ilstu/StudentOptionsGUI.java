@@ -73,7 +73,6 @@ public class StudentOptionsGUI extends JFrame
 		
 		//Gets the current file
 		currentFile = fileChooserFile;
-		System.out.println(currentFile.getName());
 		studentList = new Group(currentFile);
 		
 			
