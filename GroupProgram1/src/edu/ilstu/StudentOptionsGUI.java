@@ -52,7 +52,7 @@ public class StudentOptionsGUI extends JFrame
 	private GroupCreatorGUI groupCreator;
 	
 	
-	private Group studentList;
+	protected Group studentList;
 	/**
 	 * default constructor
 	 * @param file
@@ -67,11 +67,8 @@ public class StudentOptionsGUI extends JFrame
 		
 		//Gets the current file
 		currentFile = fileChooserFile;
-		
 		studentList = new Group(currentFile);
-		
-		
-		
+			
 		//Builds all the panels
 		buildOptions();
 		buildStudentList();
@@ -87,6 +84,36 @@ public class StudentOptionsGUI extends JFrame
 		pack();
 		setVisible(true);
 	}
+
+	public StudentOptionsGUI(File listFile, Group grp1)
+	{
+		//Sets up the frame
+    	super("Student List");
+		setSize(800, 450);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		
+		//Gets the current file
+		currentFile = listFile;
+		studentList = grp1;
+			
+		//Builds all the panels
+		buildOptions();
+		buildStudentList();
+		buildTopPanel();
+		buildBottomPanel();
+		
+		//adds all the created panels to the frame
+		add(optionPanel, BorderLayout.CENTER);
+		add(studentListPanel, BorderLayout.WEST);
+		add(topPanel, BorderLayout.NORTH);
+		add(bottomPanel, BorderLayout.SOUTH);
+		
+		pack();
+		setVisible(true);
+	}
+	
+	
 	
 	/**
 	 * Builds the options panel
@@ -178,8 +205,8 @@ public class StudentOptionsGUI extends JFrame
     {
     	public void actionPerformed(ActionEvent e)
         {	
-    		addStudent = new AddStudentGUI();
-    		
+    		addStudent = new AddStudentGUI(currentFile, studentList);
+    		dispose();
         }
     }
     

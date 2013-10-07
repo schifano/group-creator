@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -44,16 +45,23 @@ public class AddStudentGUI extends JFrame
 	private JRadioButton male;
 	private JRadioButton female;
 	
+	private Group addStudentList;
+	private File currentFile;
+	
+	private String gender;
 	/**
 	 * Default Constructor
 	 */
-	public AddStudentGUI()
+	public AddStudentGUI(File studentListFile, Group studentList)
 	{
 		//sets up frame
     	super("Add a Student");
 		setSize(800, 450);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new GridLayout(0,1));
+		
+		addStudentList = studentList;
+		currentFile = studentListFile;
 		
 		//builds panels
 		buildFirstNamePanel();
@@ -146,17 +154,26 @@ public class AddStudentGUI extends JFrame
     {
     	public void actionPerformed(ActionEvent e)
         {	
-
-    		
     		fName = fNameField.getText();
     		lName = lNameField.getText();
+    		gender = "";
     		
+    		if(male.isSelected())
+    		{
+    			gender = "M";
+    		}
+    		else if(female.isSelected())
+    		{
+    			gender = "F";
+    		}
+    		else
+    		{
+    			gender = null;
+    		}
+    		
+    		addStudentList.addStudent(fName, lName, gender);
+    		StudentOptionsGUI test = new StudentOptionsGUI(currentFile, addStudentList);
+    		dispose();
         }
     } 
-	
-	
-	public static void main(String [] args)
-	{
-		AddStudentGUI app = new AddStudentGUI();
-	}	
 }
