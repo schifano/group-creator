@@ -19,8 +19,8 @@ import java.util.Scanner;
  *         This class contains an arrayList of Student Objects.
  * 
  */
-public class Group extends ArrayList<Student> {
-
+public class Group extends ArrayList<Student>
+{
 	/**
 	 * 
 	 */
@@ -88,7 +88,8 @@ public class Group extends ArrayList<Student> {
 	 * 
 	 * @return number of Students in the Group
 	 */
-	public int getGroupSize() {
+	public int getGroupSize()
+	{
 		int groupSize = 0;
 		groupSize = studentList.size();
 		return groupSize;
@@ -114,15 +115,20 @@ public class Group extends ArrayList<Student> {
 
 	}
 	
+	public Student getStudent(int index)
+	{
+		return studentList.get(index);
+	}
+	
 	public String toString()
 	{
 		String str1 = "";
 		
-		for(int i = 0; i < this.getGroupSize(); i++)
+		for(int i = 0; i < studentList.size(); i++)
 		{
-			str1 += studentList.get(i).toString() + "\n";
+			str1 += studentList.get(i) + "\n";
 		}
-				return str1;
+		return str1;
 	}
 
 	public int getNumberFemalesInGroup() {

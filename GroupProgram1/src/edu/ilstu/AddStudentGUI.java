@@ -49,10 +49,11 @@ public class AddStudentGUI extends JFrame
 	private File currentFile;
 	
 	private String gender;
+	
 	/**
 	 * Default Constructor
 	 */
-	public AddStudentGUI(File studentListFile, Group studentList)
+	public AddStudentGUI(Group studentList)
 	{
 		//sets up frame
     	super("Add a Student");
@@ -61,7 +62,6 @@ public class AddStudentGUI extends JFrame
 		setLayout(new GridLayout(0,1));
 		
 		addStudentList = studentList;
-		currentFile = studentListFile;
 		
 		//builds panels
 		buildFirstNamePanel();
@@ -172,7 +172,7 @@ public class AddStudentGUI extends JFrame
     		}
     		
     		addStudentList.addStudent(fName, lName, gender);
-    		StudentOptionsGUI test = new StudentOptionsGUI(currentFile, addStudentList);
+    		System.out.println(addStudentList);
     		dispose();
         }
     } 

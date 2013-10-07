@@ -6,7 +6,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,7 +73,9 @@ public class StudentOptionsGUI extends JFrame
 		
 		//Gets the current file
 		currentFile = fileChooserFile;
+		System.out.println(currentFile.getName());
 		studentList = new Group(currentFile);
+		
 			
 		//Builds all the panels
 		buildOptions();
@@ -84,43 +92,12 @@ public class StudentOptionsGUI extends JFrame
 		pack();
 		setVisible(true);
 	}
-
-	public StudentOptionsGUI(File listFile, Group grp1)
-	{
-		//Sets up the frame
-    	super("Student List");
-		setSize(800, 450);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setLayout(new BorderLayout());
-		
-		//Gets the current file
-		currentFile = listFile;
-		studentList = grp1;
-			
-		//Builds all the panels
-		buildOptions();
-		buildStudentList();
-		buildTopPanel();
-		buildBottomPanel();
-		
-		//adds all the created panels to the frame
-		add(optionPanel, BorderLayout.CENTER);
-		add(studentListPanel, BorderLayout.WEST);
-		add(topPanel, BorderLayout.NORTH);
-		add(bottomPanel, BorderLayout.SOUTH);
-		
-		pack();
-		setVisible(true);
-	}
-	
-	
 	
 	/**
 	 * Builds the options panel
 	 */
 	public void buildOptions()
 	{
-		
 		optionPanel = new JPanel();
 		
 		addStudentButton = new JButton("Add A Student");
@@ -187,6 +164,7 @@ public class StudentOptionsGUI extends JFrame
 		launchGroupButton.addActionListener(new launchGroupButtonListener());
 		
 		saveButton = new JButton("Save Changes");
+		saveButton.addActionListener(new saveChangesListener());
 		
 		bottomPanel.add(backButton);
 		bottomPanel.add(saveButton);
@@ -197,17 +175,71 @@ public class StudentOptionsGUI extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			
+			try 
+			{
+				
+				PrintWriter out = new PrintWriter(currentFile);
+				for(int i = 0; i < studentList.getGroupSize(); i ++)
+				{
+					out.println(studentList.getStudent(i).getFirstName() + " " 
+							+ studentList.getStudent(i).getLastName() + " " 
+							+ studentList.getStudent(i).getGender());
+				}
+				out.close();
+			} 
+				
+			catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	
-    private class addStudentListener implements ActionListener
+	//Added a window listener to this action listener so that it will update the StudentOptionGUI upon finishing
+    private class addStudentListener implements ActionListener, WindowListener
     {
     	public void actionPerformed(ActionEvent e)
         {	
-    		addStudent = new AddStudentGUI(currentFile, studentList);
-    		dispose();
+    		addStudent = new AddStudentGUI(studentList);
+    		addStudent.addWindowListener(this);
         }
+
+    	//redundant 
+		public void windowActivated(WindowEvent e) 
+		{
+		}
+
+		//redundant
+		public void windowClosed(WindowEvent e) 
+		{
+			//UPDATES EVERY TIME A NEW STUDENT IS ADDED
+			studentListTextArea.setText(studentList.toString());
+		}
+
+		//redundant
+		public void windowClosing(WindowEvent e) 
+		{	
+		}
+
+		//redundant
+		public void windowDeactivated(WindowEvent e) 
+		{	
+		}
+
+		//redundant
+		public void windowDeiconified(WindowEvent e) 
+		{	
+		}
+
+		//redundant
+		public void windowIconified(WindowEvent e) 
+		{	
+		}
+
+		//redundant
+		public void windowOpened(WindowEvent e) 
+		{
+		}
     }
     
     private class launchGroupButtonListener implements ActionListener
@@ -232,6 +264,7 @@ public class StudentOptionsGUI extends JFrame
     {
     	public void actionPerformed(ActionEvent e)
         {	
+    	
     		fileChooser = new FileChooserGUI();
     		dispose();
         }

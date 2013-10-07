@@ -100,7 +100,7 @@ public class Student {
 	
 	public String toString()
 	{
-		String str1 = this.lastName + ", " + this.firstName + ", " + this.gender;
+		String str1 = this.lastName + ", " + this.firstName + ", " +this.gender;
 		return str1;
 	}
 }
