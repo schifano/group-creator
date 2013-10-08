@@ -30,6 +30,7 @@ public class GroupCreatorSortPanel extends JPanel {
 	// Buttongroup variable will reference an object to group the radio buttons and checkbox
 	private ButtonGroup bg_sort;
 	
+	private GroupListApp groupListApp;
 	
 	
 	/**
@@ -76,6 +77,8 @@ public class GroupCreatorSortPanel extends JPanel {
 			
 			int studentNum = Integer.parseInt(studentNumber);
 			
+			groupListApp.setGroupSize(studentNum);
+			
 		}
 	}
 	
@@ -89,11 +92,16 @@ public class GroupCreatorSortPanel extends JPanel {
 					"Enter the number of groups.");
 			
 			int groupNum = Integer.parseInt(groupNumber);
+			
+			groupListApp.setNumGroups(groupNum);
 		}
 	}
 	
 	private class GenderListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
+			boolean gender = true;
+			groupListApp.setBiased(gender);
 			
 		}
 		
