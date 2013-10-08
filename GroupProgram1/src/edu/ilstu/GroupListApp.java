@@ -5,9 +5,8 @@ package edu.ilstu;
  * Oct 2, 2013
  * 
  * ULID: jdboomg
- * Course: IT168
- * Section: 4
- * Instructor: Dr. Califf
+ * Course: IT226
+ * Instructor: Cathy Holbrook
  */
 import java.util.Random;
 
@@ -24,9 +23,7 @@ public class GroupListApp {
 	private int numMales; // Number of males allowed per group
 	private boolean genderBiased;
 
-	/**
-	 * 
-	 */
+
 	public GroupListApp() {
 		numGroups = 0;
 		groupSize = 0;
@@ -43,12 +40,12 @@ public class GroupListApp {
 		// figure the total number of groups if the user selected the option to
 		// specify the number in each group
 		if (this.numGroups == 0 && this.groupSize != 0)
-			this.setNumGroups(this.groupSize, studentList.size());
+			this.calcNumGroups(this.groupSize, studentList.size());
 
 		// figure the total size of each group if the user specified the total
 		// number of groups
 		if (this.groupSize == 0 && this.numGroups != 0)
-			this.setGroupSize(this.numGroups, studentList.size());
+			this.calcGroupSize(this.numGroups, studentList.size());
 
 		if (genderBiased) {
 			int totalFemales = 0;
@@ -127,7 +124,7 @@ public class GroupListApp {
 			OKToAddToGroup = false;
 		return OKToAddToGroup;
 	}
-
+	
 	/**
 	 * This method is called if the user specified the total number of groups
 	 * desired. Then, the size of each group will be figured based on that and
@@ -135,10 +132,9 @@ public class GroupListApp {
 	 * 
 	 * @param numGroups
 	 *            total number of labGroups desired
-	 * @param fullGroupSize
-	 *            total number of students in the class
 	 */
-	public void setNumGroups(int numGroups, int fullGroupSize) {
+	public void calcNumGroups(int numGroups, int fullGroupSize) 
+	{
 		this.numGroups = numGroups;
 		if (numGroups != 0) {
 			if (fullGroupSize % numGroups == 0) {
@@ -148,6 +144,24 @@ public class GroupListApp {
 			}
 		}
 	}
+	/**
+	 * This method is called if the user specified the total number of groups
+	 * desired. Then, the size of each group will be figured based on that and
+	 * the total number of students.
+	 * 
+	 * @param numGroups
+	 *            total number of labGroups desired
+	 */
+	public void setNumGroups(int numGroups)
+	{
+		this.numGroups = numGroups;
+	}
+	
+	public void setBiased(boolean gender)
+	{
+		this.genderBiased = gender;
+	}
+
 
 	/**
 	 * This method is called if the user specified the size of each group. Then,
@@ -159,7 +173,7 @@ public class GroupListApp {
 	 * @param fullGroupSize
 	 *            The total number of students in the class.
 	 */
-	public void setGroupSize(int groupSize, int fullGroupSize) {
+	public void calcGroupSize(int groupSize, int fullGroupSize) {
 		this.groupSize = groupSize;
 		if (groupSize != 0) {
 			if (fullGroupSize % groupSize == 0) {
@@ -168,5 +182,18 @@ public class GroupListApp {
 				this.numGroups = (fullGroupSize / groupSize) + 1;
 			}
 		}
+	}
+	/**
+	 * This method is called if the user specified the size of each group. Then,
+	 * the number of groups will be determined by dividing the total number of
+	 * students by the size of each group.
+	 * 
+	 * @param groupSize
+	 *            The maximum number of students in each group.
+	 */
+	public void setGroupSize(int groupSize, int fullGroupSize) 
+	{
+		this.groupSize = groupSize;
+	
 	}
 }
