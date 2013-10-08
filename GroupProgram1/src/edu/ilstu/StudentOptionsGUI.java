@@ -205,8 +205,7 @@ public class StudentOptionsGUI extends JFrame
 
     	//redundant 
 		public void windowActivated(WindowEvent e) 
-		{
-		}
+		{}
 
 		//redundant
 		public void windowClosed(WindowEvent e) 
@@ -217,28 +216,19 @@ public class StudentOptionsGUI extends JFrame
 
 		//redundant
 		public void windowClosing(WindowEvent e) 
-		{	
-		}
+		{}
 
 		//redundant
-		public void windowDeactivated(WindowEvent e) 
-		{	
-		}
+		public void windowDeactivated(WindowEvent e) {}
 
 		//redundant
-		public void windowDeiconified(WindowEvent e) 
-		{	
-		}
+		public void windowDeiconified(WindowEvent e) {}
 
 		//redundant
-		public void windowIconified(WindowEvent e) 
-		{	
-		}
+		public void windowIconified(WindowEvent e) {}
 
 		//redundant
-		public void windowOpened(WindowEvent e) 
-		{
-		}
+		public void windowOpened(WindowEvent e) {}
     }
     
     private class launchGroupButtonListener implements ActionListener
@@ -250,20 +240,44 @@ public class StudentOptionsGUI extends JFrame
         }
     }
 
-
-    private class removeStudentListener implements ActionListener
+    private class removeStudentListener implements ActionListener, WindowListener
     {
     	public void actionPerformed(ActionEvent e)
         {	
-    		removeStudent = new RemoveStudentGUI();
+    		removeStudent = new RemoveStudentGUI(studentList);
+    		removeStudent.addWindowListener(this);
         }
+
+		@Override
+		public void windowActivated(WindowEvent arg0)
+		{}
+
+		@Override
+		public void windowClosed(WindowEvent arg0)
+		{
+			studentListTextArea.setText(studentList.toString());
+		}
+
+		@Override
+		public void windowClosing(WindowEvent arg0) {}
+
+		@Override
+		public void windowDeactivated(WindowEvent arg0) {}
+
+		@Override
+		public void windowDeiconified(WindowEvent arg0) {}
+
+		@Override
+		public void windowIconified(WindowEvent arg0) {}
+
+		@Override
+		public void windowOpened(WindowEvent arg0) {}
     }
 	
     private class backButtonListener implements ActionListener
     {
     	public void actionPerformed(ActionEvent e)
         {	
-    	
     		fileChooser = new FileChooserGUI();
     		dispose();
         }

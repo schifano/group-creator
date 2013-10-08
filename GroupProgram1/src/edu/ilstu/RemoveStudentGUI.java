@@ -20,29 +20,37 @@ public class RemoveStudentGUI extends JFrame
 {
 
 	//first name panel assets
-	JPanel fNamePanel; 
-	JLabel fNameLabel;
-	JTextField fNameField;
+	private	JPanel fNamePanel; 
+	private JLabel fNameLabel;
+	private JTextField fNameField;
+	private String fName;
 	
 	//last name panel assets
-	JPanel lNamePanel;
-	JLabel lNameLabel;
-	JTextField lNameField;
+	private JPanel lNamePanel;
+	private JLabel lNameLabel;
+	private JTextField lNameField;
+	private String lName;
 	
-	JPanel buttonPanel;
-	JButton removeButton;
-	JButton cancelButton;
+	
+	private JPanel buttonPanel;
+	private JButton removeButton;
+	private JButton cancelButton;
+	
+	private Group removeStudentList;
+	
 	
 	/**
 	 * creates the remove student interface
 	 */
-	public RemoveStudentGUI()
+	public RemoveStudentGUI(Group studentList)
 	{
 		//sets up the frame
     	super("Remove a Student");
 		setSize(800, 450);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new GridLayout(0,1));
+		
+		removeStudentList = studentList;
 		
 		//builds the panels
 		buildFirstNamePanel();
@@ -96,6 +104,7 @@ public class RemoveStudentGUI extends JFrame
 		buttonPanel.setLayout(new FlowLayout());
 		
 		removeButton = new JButton("Remove");
+		removeButton.addActionListener(new removeListener());
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new cancelListener());
@@ -104,16 +113,34 @@ public class RemoveStudentGUI extends JFrame
 		buttonPanel.add(cancelButton);
 	}
 	
-    public class cancelListener implements ActionListener
+	public class removeListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			boolean isStudent;
+			
+			fName = fNameField.getText();
+    		lName = lNameField.getText();
+    		
+    		isStudent = removeStudentList.removeStudent(fName, lName);
+    		
+    		if(isStudent)
+    		{
+    			System.out.println("REMOVED");
+    		}
+    		else
+    		{
+    			System.out.println("NOT REMOVED");
+    		}
+    		dispose();
+		}
+	}
+    
+	public class cancelListener implements ActionListener
     {
     	public void actionPerformed(ActionEvent e)
         {	
     		dispose();
         }
     }
-	
-	public static void main(String [] args)
-	{
-		RemoveStudentGUI app = new RemoveStudentGUI();
-	}
 }

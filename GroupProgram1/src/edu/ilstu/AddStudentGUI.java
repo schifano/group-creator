@@ -172,7 +172,6 @@ public class AddStudentGUI extends JFrame
     		}
     		
     		addStudentList.addStudent(fName, lName, gender);
-    		System.out.println(addStudentList);
     		dispose();
         }
     } 
