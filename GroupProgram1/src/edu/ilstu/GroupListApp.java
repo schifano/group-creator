@@ -191,7 +191,7 @@ public class GroupListApp {
 	 * @param groupSize
 	 *            The maximum number of students in each group.
 	 */
-	public void setGroupSize(int groupSize, int fullGroupSize) 
+	public void setGroupSize(int groupSize) 
 	{
 		this.groupSize = groupSize;
 	
