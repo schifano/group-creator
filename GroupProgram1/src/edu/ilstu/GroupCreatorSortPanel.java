@@ -4,9 +4,13 @@ import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Description: GroupCreatorGUI that generates the GUI that allows a user to
@@ -26,6 +30,8 @@ public class GroupCreatorSortPanel extends JPanel {
 	// Buttongroup variable will reference an object to group the radio buttons and checkbox
 	private ButtonGroup bg_sort;
 	
+	
+	
 	/**
 	 * Constructor
 	 */
@@ -34,11 +40,14 @@ public class GroupCreatorSortPanel extends JPanel {
 		// GridLayout manager with three rows one column
 		setLayout(new GridLayout(3,1));
 		
-		// Radio buttons
-		studentsPerGroup = new JRadioButton("Number of students per group.");
-		groups = new JRadioButton("Number of groups.");
-		// Checkbox
-		gender = new JCheckBox("Gender.");
+		studentsPerGroup = new JRadioButton("Number of students per group."); // radio button
+		studentsPerGroup.addActionListener(new StudentNumberListener());
+		
+		groups = new JRadioButton("Number of groups."); // radio button
+		groups.addActionListener(new GroupNumberListener());
+		
+		gender = new JCheckBox("Gender."); // check box
+		gender.addActionListener(new GenderListener());
 		
 	    // Group the radio buttons.
 	    bg_sort = new ButtonGroup();
@@ -54,5 +63,41 @@ public class GroupCreatorSortPanel extends JPanel {
 	    add(groups);
 	    add(gender);
 	}
+	
+	
+	/**
+	 * Private method that takes the number of students, parses the String to an int,
+	 * and passes it through the ** method.
+	 */
+	private class StudentNumberListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String studentNumber = JOptionPane.showInputDialog(null,
+					"Enter the number of students.");
+			
+			int studentNum = Integer.parseInt(studentNumber);
+			
+		}
+	}
+	
+	/**
+	 * Private method that takes the number of groups, parses the String to an int,
+	 * and passes it through the ** method.
+	 */
+	private class GroupNumberListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String groupNumber = JOptionPane.showInputDialog(null,
+					"Enter the number of groups.");
+			
+			int groupNum = Integer.parseInt(groupNumber);
+		}
+	}
+	
+	private class GenderListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+		
+	}
+	
 	
 }
