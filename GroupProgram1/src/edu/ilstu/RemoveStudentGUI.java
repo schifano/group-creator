@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -117,20 +118,21 @@ public class RemoveStudentGUI extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			boolean isStudent;
+			boolean isRemoved;
 			
 			fName = fNameField.getText();
     		lName = lNameField.getText();
     		
-    		isStudent = removeStudentList.removeStudent(fName, lName);
+    		isRemoved = removeStudentList.removeStudent(fName, lName);
     		
-    		if(isStudent)
+    		if(isRemoved)
     		{
-    			System.out.println("REMOVED");
+    			JOptionPane.showMessageDialog(null, fName + " " + lName + " has been removed", 
+    										"Student Removed", JOptionPane.INFORMATION_MESSAGE);
     		}
     		else
     		{
-    			System.out.println("NOT REMOVED");
+    			JOptionPane.showMessageDialog(null, "Student Not Found", "Error", JOptionPane.ERROR_MESSAGE);
     		}
     		dispose();
 		}
