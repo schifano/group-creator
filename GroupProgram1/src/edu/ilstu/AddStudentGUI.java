@@ -10,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -117,6 +118,8 @@ public class AddStudentGUI extends JFrame
 		genderPanel.setLayout(new FlowLayout());
 		
 		male = new JRadioButton("male");
+		male.setSelected(true);
+		
 		female = new JRadioButton("female");
 		
 		genderButtonGroup = new ButtonGroup();
@@ -172,6 +175,7 @@ public class AddStudentGUI extends JFrame
     		}
     		
     		addStudentList.addStudent(fName, lName, gender);
+    		JOptionPane.showMessageDialog(null, fName + " " + lName + " was added successfully");
     		dispose();
         }
     } 
