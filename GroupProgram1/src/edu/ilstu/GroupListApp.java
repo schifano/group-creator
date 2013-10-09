@@ -164,6 +164,20 @@ public class GroupListApp {
 	public void setNumGroups(int numGroups)
 	{
 		this.numGroups = numGroups;
+		this.groupSize = 0;
+	}
+	/**
+	 * This method is called if the user specified the size of each group. Then,
+	 * the number of groups will be determined by dividing the total number of
+	 * students by the size of each group.
+	 * 
+	 * @param groupSize
+	 *            The maximum number of students in each group.
+	 */
+	public void setGroupSize(int groupSize)
+	{
+		this.numGroups = 0;
+		this.groupSize = groupSize;
 	}
 	
 	public void setBiased(boolean gender)
@@ -192,17 +206,6 @@ public class GroupListApp {
 			}
 		}
 	}
-	/**
-	 * This method is called if the user specified the size of each group. Then,
-	 * the number of groups will be determined by dividing the total number of
-	 * students by the size of each group.
-	 * 
-	 * @param groupSize
-	 *            The maximum number of students in each group.
-	 */
-	public void setGroupSize(int groupSize) 
-	{
-		this.groupSize = groupSize;
+
 	
-	}
 }
