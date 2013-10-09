@@ -19,12 +19,11 @@ import java.util.Scanner;
  *         This class contains an arrayList of Student Objects.
  * 
  */
-public class Group extends ArrayList<Student>
+public class Group
 {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ArrayList<Student> studentList;
 	private Scanner in;
 	
@@ -73,7 +72,8 @@ public class Group extends ArrayList<Student>
 	/**
 	 * This method will add a Student object to the arrayList
 	 */
-	public void addStudent(Student stu1) {
+	public void addStudent(Student stu1) 
+	{
 		studentList.add(stu1);
 	}
 	
@@ -221,6 +221,8 @@ public class Group extends ArrayList<Student>
 		}
 		return groupNumMales;
 	}
+	
+	
 	
 	public String toString()
 	{

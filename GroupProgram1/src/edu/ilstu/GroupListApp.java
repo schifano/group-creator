@@ -9,6 +9,7 @@ package edu.ilstu;
  * Instructor: Cathy Holbrook
  */
 import java.util.Random;
+import java.io.File;
 
 /**
  * @author John Boomgarden
@@ -31,6 +32,14 @@ public class GroupListApp {
 		genderBiased = false;
 	}
 
+	public void CreateGroupList(File studentListFile, File lastGroupFile)
+	{
+		Group studentList = new Group();
+		GroupList lastGroup = new GroupList();
+		
+		this.CreateGroupList(studentList, lastGroup);
+			
+	}
 	public void CreateGroupList(Group studentList, GroupList lastGroup) {
 		int oldIndex = 0;
 		boolean studentInGroup, studentAdded = false;
@@ -40,19 +49,19 @@ public class GroupListApp {
 		// figure the total number of groups if the user selected the option to
 		// specify the number in each group
 		if (this.numGroups == 0 && this.groupSize != 0)
-			this.calcNumGroups(this.groupSize, studentList.size());
+			this.calcNumGroups(this.groupSize, studentList.getGroupSize());
 
 		// figure the total size of each group if the user specified the total
 		// number of groups
 		if (this.groupSize == 0 && this.numGroups != 0)
-			this.calcGroupSize(this.numGroups, studentList.size());
+			this.calcGroupSize(this.numGroups, studentList.getGroupSize());
 
 		if (genderBiased) {
 			int totalFemales = 0;
 			// loop through all Student objects in the studentList.
 			// and count how many total females there are.
-			for (int i = 0; i < studentList.size(); i++) {
-				if (studentList.get(i).getGender() == "F")
+			for (int i = 0; i < studentList.getGroupSize(); i++) {
+				if (studentList.getStudent(i).getGender() == "F")
 					totalFemales++;
 			}
 			// once we know how many total females there are, then we will
@@ -70,14 +79,14 @@ public class GroupListApp {
 
 		// loop through all Student objects in the studentList.
 		// studentList contains all the students in the lab class
-		for (int i = 0; i < studentList.size(); i++) {
+		for (int i = 0; i < studentList.getGroupSize(); i++) {
 			while (!studentAdded) {
 				// generate random number for index of group to try adding
 				// student to
 				int newIndex = rand.nextInt(numGroups) - 1;
 
 				// find which labGroup the student was in the last time
-				oldIndex = lastGroup.findStudent(studentList.get(i));
+				oldIndex = lastGroup.findStudent(studentList.getStudent(i));
 
 				studentInGroup = false;
 				studentAdded = false;
@@ -86,16 +95,16 @@ public class GroupListApp {
 				if (oldIndex == -1)
 					studentInGroup = false;
 				else {
-					for (int j = 0; j < lastGroup.get(oldIndex).size(); j++) {
-						if (lastGroup.get(oldIndex).containsStudent(
-								groups.get(newIndex).get(j)))
+					for (int j = 0; j < lastGroup.getGroup(oldIndex).getGroupSize(); j++) {
+						if (lastGroup.getGroup(oldIndex).containsStudent(
+								groups.getGroup(newIndex).getStudent(j)))
 							studentInGroup = true;
 					}
 					if (!studentInGroup
-							&& correctNumbers(groups.get(newIndex),
-									studentList.get(i))) {
+							&& correctNumbers(groups.getGroup(newIndex),
+									studentList.getStudent(i))) {
 						studentAdded = true;
-						groups.get(newIndex).addStudent(studentList.get(i));
+						groups.getGroup(newIndex).addStudent(studentList.getStudent(i));
 					}
 
 				}
