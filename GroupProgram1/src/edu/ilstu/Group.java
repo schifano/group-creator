@@ -74,6 +74,7 @@ public class Group
 	 */
 	public void addStudent(Student stu1) 
 	{
+		if (stu1 != null)
 		studentList.add(stu1);
 	}
 	
