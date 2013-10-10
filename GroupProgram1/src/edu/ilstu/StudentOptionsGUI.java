@@ -121,13 +121,15 @@ public class StudentOptionsGUI extends JFrame
 		
 		fileLabel = new JLabel("Current File: ");
 		fileLabel.setFont(new Font("Serif", Font.BOLD, 18));
+		if (currentFile != null)
+		{
+			fileField = new JTextField(currentFile.getName());
+			fileField.setEditable(false);
+			fileField.setFont(new Font("Serif", Font.BOLD, 18));
 		
-		fileField = new JTextField(currentFile.getName());
-		fileField.setEditable(false);
-		fileField.setFont(new Font("Serif", Font.BOLD, 18));
-		
-		topPanel.add(fileLabel);
-		topPanel.add(fileField);
+			topPanel.add(fileLabel);
+			topPanel.add(fileField);
+		}
 	}
 	
 	/**

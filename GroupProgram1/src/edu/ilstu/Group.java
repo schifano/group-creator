@@ -48,7 +48,8 @@ public class Group
 		studentList = new ArrayList<Student>();
 		
 		try {
-			in = new Scanner(groupFile);
+			if (groupFile != null)
+			{	in = new Scanner(groupFile);
 			
 			while(in.hasNext())
 			{
@@ -59,6 +60,7 @@ public class Group
 				tmpStudent.setGender(in.next());
 				
 				studentList.add(tmpStudent);
+			}
 			}
 			}
 		catch (FileNotFoundException e) 
