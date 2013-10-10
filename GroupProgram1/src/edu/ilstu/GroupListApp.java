@@ -35,7 +35,7 @@ public class GroupListApp {
 		genderBiased = false;
 	}
 
-	public void CreateGroupList(File studentListFile, File lastGroupFile) {
+	public GroupList CreateGroupList(File studentListFile, File lastGroupFile) {
 		Group studentList = new Group();
 		GroupList lastGroup = new GroupList();
 		File studentFile = studentListFile;
@@ -59,7 +59,8 @@ public class GroupListApp {
 		if (groupFile != null) {
 			try {
 				in = new Scanner(studentFile);
-
+				// read next Line from file
+				// load that into String, parse into first last gender
 				while (in.hasNext()) {
 					Group tempList = new Group();
 					while (in.next() != "") {
@@ -79,11 +80,13 @@ public class GroupListApp {
 			}
 		}
 
-		this.CreateGroupList(studentList, lastGroup);
+		GroupList newGroup = this.CreateGroupList(studentList, lastGroup);
+		return newGroup;
 
 	}
 
-	public void CreateGroupList(Group studentList, GroupList lastGroup) {
+	public GroupList CreateGroupList(Group studentList, GroupList lastGroup) 
+	{
 		int oldIndex = -1;
 		boolean studentInGroup, studentAdded = false;
 		GroupList groups = new GroupList();
@@ -101,23 +104,25 @@ public class GroupListApp {
 
 		this.setGenderLimits(studentList);
 
-		// loop through all Student objects in the studentList.
+		// loop through all Student objects in the studentList
 		// studentList contains all the students in the lab class
+		System.out.println("before for loop");
 		for (int i = 0; i < studentList.getGroupSize(); i++) {
+			System.out.println("in for loop");
 			while (!studentAdded) {
+				System.out.println("in not student added");
 				// generate random number for index of group to try adding
 				// student to
 				int newIndex = rand.nextInt(numGroups) - 1;
-
+				System.out.println(newIndex);
 				// find which labGroup the student was in the last time
 				if (lastGroup != null)
-				  oldIndex = lastGroup.findStudent(studentList.getStudent(i));
-
+					oldIndex = lastGroup.findStudent(studentList.getStudent(i));
+				System.out.println(oldIndex);
 				studentInGroup = false;
 				studentAdded = false;
 				// if oldIndex is -1, that means the specified student was not
 				// in any labGroup last time
-				System.out.println(groups.toString());
 				if (oldIndex == -1)
 					studentInGroup = false;
 				else {
@@ -127,19 +132,24 @@ public class GroupListApp {
 								groups.getGroup(newIndex).getStudent(j)))
 							studentInGroup = true;
 					}
-					if (!studentInGroup
-							&& correctNumbers(groups.getGroup(newIndex),
-									studentList.getStudent(i))) {
-						studentAdded = true;
-						groups.getGroup(newIndex).addStudent(
-								studentList.getStudent(i));
-					}
-	
 				}
-			}
-			
-		}
+				if (groups.getGroup(newIndex)== null)
+				{
+				    Group tmpGroup = new Group(); 
+				    groups.addGroup(tmpGroup);
+				}
+				
+				if (!studentInGroup
+						&& correctNumbers(groups.getGroup(newIndex),
+								studentList.getStudent(i))) {
+					studentAdded = true;
+					groups.getGroup(newIndex).addStudent(
+							studentList.getStudent(i));
+				}
 
+			}
+		}
+return groups;
 	}
 
 	public void setGenderLimits(Group studentList) {
@@ -174,6 +184,7 @@ public class GroupListApp {
 
 		// if we are equal to or greater than the maximum number in the group,
 		// we can't add the student
+
 		if (grp.getGroupSize() >= this.groupSize)
 			OKToAddToGroup = false;
 
@@ -197,19 +208,15 @@ public class GroupListApp {
 	 * @param numGroups
 	 *            total number of labGroups desired
 	 */
-	public void calcNumGroups(int groupSize, int fullGroupSize) 
-	{
-		if (groupSize != 0) 
-		{
-			if (fullGroupSize % groupSize == 0) 
+	public void calcNumGroups(int groupSize, int fullGroupSize) {
+		if (groupSize != 0) {
+			if (fullGroupSize % groupSize == 0)
 				this.numGroups = fullGroupSize / groupSize;
-			 else 
-			{
+			else {
 				this.numGroups = (fullGroupSize / groupSize) + 1;
 			}
 		}
-}
-	
+	}
 
 	/**
 	 * This method is called if the user specified the total number of groups

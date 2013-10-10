@@ -103,7 +103,9 @@ public class GroupList
 	{
 		String str1 = "";
 
-		for (int i = 0; i < groupList.size(); i++) {
+		for (int i = 0; i < groupList.size(); i++) 
+		{
+			str1 += "Group " + (i+1) + "\n";
 			str1 += groupList.get(i) + "\n";
 		}
 		return str1;
