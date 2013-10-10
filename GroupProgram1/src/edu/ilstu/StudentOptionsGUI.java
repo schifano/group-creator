@@ -184,6 +184,7 @@ public class StudentOptionsGUI extends JFrame
 							+ studentList.getStudent(i).getLastName() + " " 
 							+ studentList.getStudent(i).getGender());
 				}
+				JOptionPane.showMessageDialog(null, "Changed successfully saved.");
 				out.close();
 			} 
 				
