@@ -37,6 +37,7 @@ public class GroupCreatorSortPanel extends JPanel {
 	 * Constructor
 	 */
 	public GroupCreatorSortPanel() {
+		groupListApp = new GroupListApp();
 		
 		// GridLayout manager with three rows one column
 		setLayout(new GridLayout(3,1));
@@ -54,7 +55,6 @@ public class GroupCreatorSortPanel extends JPanel {
 	    bg_sort = new ButtonGroup();
 	    bg_sort.add(studentsPerGroup);
 	    bg_sort.add(groups);
-	    bg_sort.add(gender);
 	    
 	    // Adds border around panel
 	    setBorder(BorderFactory.createTitledBorder("Sort"));
@@ -101,6 +101,7 @@ public class GroupCreatorSortPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			
 			boolean gender = true;
+			
 			groupListApp.setBiased(gender);
 			
 		}
