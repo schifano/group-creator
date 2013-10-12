@@ -124,6 +124,7 @@ public class GroupListTest {
 		grpList.addGroup(grp1);
 		grpList.addGroup(grp2);
 		grpList.addGroup(grp3);
+		System.out.println(grpList.toString());
 		assertEquals("find student in first group", 0, grpList.findStudent(stu1));
 		assertEquals("find student in second group", 1, grpList.findStudent(stu4));
 		assertEquals("find student in third group", 2, grpList.findStudent(stu7));

@@ -6,7 +6,7 @@ package edu.ilstu;
  * 
  * ULID: jdboomg
  * Course: IT226
- * Instructor: Mrs. Holbrook
+ * Instructor: Cathy Holbrook
  */
 import java.util.ArrayList;
 
@@ -16,14 +16,14 @@ import java.util.ArrayList;
  *         This class contains an arrayList of Group Objects.
  * 
  */
-public class GroupList 
+public class GroupList
 {
 	private ArrayList<Group> groupList;
 
 	/**
 	 * Generic constructor which creates initialized array;
 	 */
-	public GroupList() 
+	public GroupList()
 	{
 		groupList = new ArrayList<Group>();
 
@@ -32,16 +32,16 @@ public class GroupList
 	/**
 	 * This method will add a Group object to the arrayList
 	 */
-	public void addGroup(Group grp1) 
+	public void addGroup(Group grp1)
 	{
 		if (grp1 != null)
 			groupList.add(grp1);
 	}
-	
+
 	/**
-	 * This method will return a Group at the specified index.  
+	 * This method will return a Group at the specified index.
 	 */
-	public Group getGroup(int i) 
+	public Group getGroup(int i)
 	{
 		if (i > -1 && i < groupList.size())
 			return groupList.get(i);
@@ -49,13 +49,12 @@ public class GroupList
 			return null;
 	}
 
-
 	/**
 	 * This method will return the number of Groups contained in the ArrayList
 	 * 
 	 * @return number of Groups in the ArrayList
 	 */
-	public int getNumGroups() 
+	public int getNumGroups()
 	{
 		int numGroups = 0;
 		numGroups = groupList.size();
@@ -67,14 +66,14 @@ public class GroupList
 	 * 
 	 * @return index of Group where Student exists
 	 */
-	public int findStudent(Student stu1) 
+	public int findStudent(Student stu1)
 	{
 		int numGroups, groupIndex = 0;
 		int foundIndex = -1;
 		numGroups = groupList.size();
-		while (groupIndex < numGroups && foundIndex == -1) 
+		while (groupIndex < numGroups && foundIndex == -1)
 		{
-			if (groupList.get(groupIndex).containsStudent(stu1)) 
+			if (groupList.get(groupIndex).containsStudent(stu1))
 			{
 				foundIndex = groupIndex;
 			}
@@ -83,14 +82,14 @@ public class GroupList
 		return foundIndex;
 
 	}
-	
+
 	/**
 	 * This method will return the index of the Group where a Student exists
-	 * without having to create a Student object first. 
+	 * without having to create a Student object first.
 	 * 
 	 * @return index of Group where Student exists
 	 */
-	public int findStudent(String firstName, String lastName) 
+	public int findStudent(String firstName, String lastName)
 	{
 		Student tempStu = new Student();
 		tempStu.setFirstName(firstName);
@@ -99,13 +98,13 @@ public class GroupList
 
 	}
 
-	public String toString() 
+	public String toString()
 	{
 		String str1 = "";
 
-		for (int i = 0; i < groupList.size(); i++) 
+		for (int i = 0; i < groupList.size(); i++)
 		{
-			str1 += "Group " + (i+1) + "\n";
+			str1 += "Group " + (i + 1) + "\n";
 			str1 += groupList.get(i) + "\n";
 		}
 		return str1;
