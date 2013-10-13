@@ -29,7 +29,6 @@ public class GroupCreatorSortPanel extends JPanel {
 	
 	// Buttongroup variable will reference an object to group the radio buttons and checkbox
 	private ButtonGroup bg_sort;
-	
 	private GroupListApp groupListApp;
 	
 	
@@ -42,13 +41,13 @@ public class GroupCreatorSortPanel extends JPanel {
 		// GridLayout manager with three rows one column
 		setLayout(new GridLayout(3,1));
 		
-		studentsPerGroup = new JRadioButton("Number of students per group."); // radio button
+		studentsPerGroup = new JRadioButton("Number of students per group"); // radio button
 		studentsPerGroup.addActionListener(new StudentNumberListener());
 		
-		groups = new JRadioButton("Number of groups."); // radio button
+		groups = new JRadioButton("Number of groups"); // radio button
 		groups.addActionListener(new GroupNumberListener());
 		
-		gender = new JCheckBox("Gender."); // check box
+		gender = new JCheckBox("Gender"); // check box
 		gender.addActionListener(new GenderListener());
 		
 	    // Group the radio buttons.
@@ -67,23 +66,27 @@ public class GroupCreatorSortPanel extends JPanel {
 	
 	
 	/**
-	 * Private method that takes the number of students, parses the String to an int,
+	 * Private class that takes the number of students, parses the String to an int,
 	 * and passes it through the ** method.
 	 */
 	private class StudentNumberListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String studentNumber = JOptionPane.showInputDialog(null,
+			String studentNumber = "";
+			
+			studentNumber = JOptionPane.showInputDialog(null,
 					"Enter the number of students.");
 			
+			if (studentNumber !=null) {
 			int studentNum = Integer.parseInt(studentNumber);
 			
 			groupListApp.setGroupSize(studentNum);
+			}
 			
 		}
 	}
 	
 	/**
-	 * Private method that takes the number of groups, parses the String to an int,
+	 * Private class that takes the number of groups, parses the String to an int,
 	 * and passes it through the ** method.
 	 */
 	private class GroupNumberListener implements ActionListener {
@@ -97,6 +100,10 @@ public class GroupCreatorSortPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Private class
+	 *
+	 */
 	private class GenderListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			

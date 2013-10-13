@@ -12,11 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import edu.ilstu.StudentOptionsGUI;
 
 /**
  * Creates the initial interface for user to create a new file or load an existing one
@@ -120,13 +117,10 @@ public class FileChooserGUI extends JFrame
     		newFile = fc.getSelectedFile();
     		
     		try {
-    			if(newFile != null)
-    			{
 					out = new PrintWriter(newFile);
 		    		out.close();
-    			
+		    		
 		    		studentGUI = new StudentOptionsGUI(newFile);
-    			}
 		    		dispose();
 				} 
     		catch (FileNotFoundException e1) 

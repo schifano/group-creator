@@ -20,7 +20,11 @@ import javax.swing.JFileChooser;
 public class GroupCreatorGUI extends JFrame {
 	
 	// Create new Sort Panel object
+	private StudentOptionsGUI studentOptions;
 	private GroupCreatorSortPanel groupCreatorSortPanel;
+	private UploadPanel uploadPanel;
+	private GroupListApp groupListApp;
+	private GroupListGUI groupListGUI;
 	
 	// Create button panel and buttons
 	private JPanel buttonPanel;
@@ -30,15 +34,13 @@ public class GroupCreatorGUI extends JFrame {
 	
 	// Create new file chooser object
 	private JFileChooser fc;
-	
 	private File currentFile;
-	
-	private StudentOptionsGUI studentOptions;
 	
 	/**
 	 * Constructor
 	 */
 	public GroupCreatorGUI(File studentOptionFile) {
+		
 		
 		// Display title
 		super("Lab Group Creator Application");
@@ -55,13 +57,14 @@ public class GroupCreatorGUI extends JFrame {
 		
 		// Create custom panels
 		groupCreatorSortPanel = new GroupCreatorSortPanel();
+		uploadPanel = new UploadPanel();
 		
 		// Call the buildButtonPanel method to create button pane.
 		buildButtonPanel();
 		
 		// Add components to the content pane.
-	//  add(groupCreatorFileChooser, BorderLayout.NORTH);
-		add(groupCreatorSortPanel, BorderLayout.CENTER);
+		add(groupCreatorSortPanel, BorderLayout.NORTH);
+		add(uploadPanel, BorderLayout.CENTER);
 	    add(buttonPanel, BorderLayout.SOUTH);
 
 		// Pack contents of the window and display it.
@@ -101,10 +104,16 @@ public class GroupCreatorGUI extends JFrame {
 	private class CreateGroupButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e)
 		{
-			fc= new JFileChooser();
-	    
-
-
+			
+			// groupListApp.CreateGroupList(studentOptions.getCurrentFile(), uploadPanel.getGroupPreviousFile());
+			
+			
+			// pass new group list
+			// use toString
+			// GUI appears
+			// save button, back button
+		
+			groupListGUI = new GroupListGUI();
 	      }
 	}
 	
