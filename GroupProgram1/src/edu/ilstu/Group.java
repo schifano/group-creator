@@ -203,7 +203,7 @@ public class Group
 	public int getNumberFemalesInGroup() {
 		int groupNumFemales = 0;
 		for (int i = 0; i < this.getGroupSize(); i++) {
-			if (studentList.get(i).getGender() == "F")
+			if (studentList.get(i).getGender().charAt(0) == 'F')
 				groupNumFemales++;
 		}
 		return groupNumFemales;
@@ -217,7 +217,7 @@ public class Group
 	public int getNumberMalesInGroup() {
 		int groupNumMales = 0;
 		for (int i = 0; i < this.getGroupSize(); i++) {
-			if (studentList.get(i).getGender() == "M")
+			if (studentList.get(i).getGender().charAt(0) == 'M' )
 				groupNumMales++;
 		}
 		return groupNumMales;

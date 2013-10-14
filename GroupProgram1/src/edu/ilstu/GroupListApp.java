@@ -236,7 +236,7 @@ public class GroupListApp
 							studentInGroup = true;
 					}
 				}
-				if ((!studentInGroup | numTries >= this.numGroups)
+				if ((!studentInGroup | numTries >= this.numGroups*this.numGroups)
 						&& correctNumbers(groups.getGroup(newIndex),
 								studentList.getStudent(i)))
 				{
@@ -246,7 +246,6 @@ public class GroupListApp
 							studentList.getStudent(i));
 				}
 			}
-
 		}
 		return groups;
 	}
@@ -266,13 +265,15 @@ public class GroupListApp
 			// and count how many total females there are.
 			for (int i = 0; i < studentList.getGroupSize(); i++)
 			{
-				if (studentList.getStudent(i).getGender() == "F")
+				if (studentList.getStudent(i).getGender().charAt(0) == 'F')
+				{
 					totalFemales++;
+				}
 			}
 			// once we know how many total females there are, then we will
 			// divide that
 			// number by the total number of groups.
-
+			
 			if (totalFemales % numGroups == 0)
 			{
 				this.numFemales = totalFemales / numGroups;
@@ -282,12 +283,14 @@ public class GroupListApp
 				this.numFemales = (totalFemales / numGroups) + 1;
 				this.numMales = groupSize - this.numFemales + 1;
 			}
-		} else
+		} 
+		else
 		{
 			this.numFemales = this.groupSize;
 			this.numMales = this.groupSize;
 		}
-
+		//System.out.println("Females: " + "total:" + this.numFemales + "\n" + "numGrps: "+numGroups);
+		//System.out.println("Males: " + "total:" + this.numMales + "\n" + "numGrps: "+numGroups);
 	}
 
 	/**
@@ -314,10 +317,10 @@ public class GroupListApp
 		
 		// Likewise for males.
 		
-		if (stu1.getGender() == "F"
+		if (stu1.getGender().charAt(0) == 'F'
 				&& grp.getNumberFemalesInGroup() >= this.numFemales)
 			OKToAddToGroup = false;
-		else if (stu1.getGender() == "M"
+		else if (stu1.getGender().charAt(0) == 'M'
 				&& grp.getNumberMalesInGroup() >= this.numMales)
 			OKToAddToGroup = false;
 		return OKToAddToGroup;

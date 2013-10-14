@@ -146,6 +146,5 @@ public class GroupCreatorGUI extends JFrame {
 			// Exit the application
 			System.exit(0);
 		}
-	}
-	
+	}	
 }
