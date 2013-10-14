@@ -3,7 +3,6 @@ package edu.ilstu;
 /**
  * Description: Student class used to create new student objects.
  * @author Rachel A Schifano
- *
  */
 
 public class Student {
@@ -99,6 +98,10 @@ public class Student {
 		return false;
 	}
 	
+	/**
+	 * Method that prints out a toString of the student object for last name, first name and gender
+	 * @return String The string of a student object ordered with the last name, first name and gender
+	 */
 	public String toString()
 	{
 		String str1 = this.lastName + ", " + this.firstName + ", " +this.gender;
