@@ -1,8 +1,18 @@
 package edu.ilstu;
 
+/*
+ * Filename: GroupListGUI.java
+ * Date: 10/14/13
+ * 
+ * ULID: raschif
+ * Course: IT 226
+ * Instructor: Cathy Holbrook
+ * 
+ */
+
 /**
  * Description: Student class used to create new student objects.
- * @author Rachel A Schifano
+ * @author Rachel A Schifano, John Boomgarden, Corbin Sumner
  */
 
 public class Student {
