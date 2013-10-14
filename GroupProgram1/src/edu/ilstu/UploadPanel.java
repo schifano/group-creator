@@ -2,6 +2,7 @@ package edu.ilstu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -48,7 +49,8 @@ public class UploadPanel extends JPanel
 	public UploadPanel() 
 	{
 
-		setLayout(new GridLayout(3,1));
+		
+		setLayout(new GridLayout(2,1));
 		
 		uploadLabel = new JLabel("Choose previous group file to compare new group file to.");
 			
@@ -57,12 +59,13 @@ public class UploadPanel extends JPanel
 		
 		setBorder(BorderFactory.createTitledBorder("Optional"));
 		
+		
 		// build group file panel
 		buildGroupFilePanel();
 		
 		add(uploadLabel); // row 1
 		add(groupListPanel); // row 2
-		add(uploadButton); // row 3	
+		
 	}
 	
 	/**
@@ -73,16 +76,15 @@ public class UploadPanel extends JPanel
 		groupListPanel.setLayout(new BorderLayout());
 		
 		blankLabel = new JLabel(" ");
-		groupListLabel = new JLabel("Current File: ");
+		groupListLabel = new JLabel("File: ");
 		// change dimensions?
 		groupListFileField = new JTextField("NO FILE");
 		groupListFileField.setEnabled(false);
 		
 		// add all assets to the file panel
-		groupListPanel.add(blankLabel, BorderLayout.NORTH);
 		groupListPanel.add(groupListLabel, BorderLayout.WEST);
 		groupListPanel.add(groupListFileField, BorderLayout.CENTER);
-		
+		groupListPanel.add(uploadButton, BorderLayout.EAST);
 	}
 	
 	public void setGroupListFileField(String text) 

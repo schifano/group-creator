@@ -42,7 +42,7 @@ public class StudentOptionsGUI extends JFrame
 	
 	//These are the assets that are displayed at the top of the frame
 	private JPanel topPanel;
-	private File currentFile;
+	private File studentListFile;
 	private JLabel fileLabel;
 	private JTextField fileField;
 	
@@ -72,8 +72,8 @@ public class StudentOptionsGUI extends JFrame
 		setLayout(new BorderLayout());
 		
 		//Gets the current file
-		currentFile = fileChooserFile;
-		studentList = new Group(currentFile);
+		studentListFile = fileChooserFile;
+		studentList = new Group(studentListFile);
 		
 			
 		//Builds all the panels
@@ -95,7 +95,7 @@ public class StudentOptionsGUI extends JFrame
 	
 	public File getCurrentFile()
 	{
-		return currentFile;
+		return studentListFile;
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class StudentOptionsGUI extends JFrame
 		fileLabel = new JLabel("Current File: ");
 		fileLabel.setFont(new Font("Serif", Font.BOLD, 18));
 		
-		fileField = new JTextField(currentFile.getName());
+		fileField = new JTextField(studentListFile.getName());
 		fileField.setEditable(false);
 		fileField.setFont(new Font("Serif", Font.BOLD, 18));
 		
@@ -182,8 +182,7 @@ public class StudentOptionsGUI extends JFrame
 		{
 			try 
 			{
-				
-				PrintWriter out = new PrintWriter(currentFile);
+				PrintWriter out = new PrintWriter(studentListFile);
 				for(int i = 0; i < studentList.getGroupSize(); i ++)
 				{
 					out.println(studentList.getStudent(i).getFirstName() + " " 
@@ -243,7 +242,7 @@ public class StudentOptionsGUI extends JFrame
     	public void actionPerformed(ActionEvent e)
         {	
     		dispose();
-    		groupCreator = new GroupCreatorGUI(currentFile);
+    		groupCreator = new GroupCreatorGUI(studentListFile);
         }
     }
 

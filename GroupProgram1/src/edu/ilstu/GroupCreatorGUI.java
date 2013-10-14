@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFileChooser;
 
@@ -78,7 +79,8 @@ public class GroupCreatorGUI extends JFrame {
 	/**
 	 * The buildButtonPanel method builds a button panel.
 	 */
-	private void buildButtonPanel() {
+	private void buildButtonPanel() 
+	{
 		
 		buttonPanel = new JPanel();
 		
@@ -88,12 +90,8 @@ public class GroupCreatorGUI extends JFrame {
 		backButton = new JButton("Back");
 		backButton.addActionListener(new BackButtonListener());
 		
-		cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new CancelButtonListener());
-		
-		buttonPanel.add(createGroupButton);
 		buttonPanel.add(backButton);
-		buttonPanel.add(cancelButton);
+		buttonPanel.add(createGroupButton);
 	}
 	
 
@@ -106,16 +104,16 @@ public class GroupCreatorGUI extends JFrame {
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			if(groupListApp.getNumGroups() == 0 && groupListApp.getGroupSize() == 0)
+			{
+				JOptionPane.showMessageDialog(null, "Please Select a Sort Option", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				finalGroupList = groupListApp.CreateGroupList(currentFile, uploadPanel.getGroupPreviousFile());
+				groupListGUI = new GroupListGUI(finalGroupList);
+			}
 			
-			finalGroupList = groupListApp.CreateGroupList(currentFile, uploadPanel.getGroupPreviousFile());
-			System.out.println(finalGroupList.toString());
-			
-			// pass new group list
-			// use toString
-			// GUI appears
-			// save button, back button
-			
-			groupListGUI = new GroupListGUI(finalGroupList);
 	      }
 	}
 	
