@@ -1,8 +1,6 @@
 package edu.ilstu;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -15,69 +13,67 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 /**
- * Description: 
+ * Description: The upload panel that sits on the GroupCreatorGUI frame. The upload panel
+ * gives the user the option of uploading a previous group file to do a comparison to before
+ * generating a new group list file.
  * @author Rachel A Schifano
  */
 
 public class UploadPanel extends JPanel 
 {
-
-	private GroupListApp groupListApp;
+	// instance variables
 	private GroupCreatorGUI groupCreatorGUI;
 	
 	private JPanel groupListPanel;
-	private JLabel blankLabel;
 	private JLabel groupListLabel;
 	private JTextField groupListFileField;
-	
-	
 	private JLabel uploadLabel;
 	private JButton uploadButton;
 	
+	// variables for saving and uploading files
 	private final JFileChooser fileChoose = new JFileChooser();
 	private File newFile;
-	private PrintWriter out;
-
 	
 	/**
 	 * Constructor
 	 */
 	public UploadPanel() 
 	{
-
-		
+		// create new layout with 2 rows and 1 column
 		setLayout(new GridLayout(2,1));
 		
+		// create new label to give upload instructions to the user
 		uploadLabel = new JLabel("Choose previous group file to compare new group file to.");
 			
+		// create upload button with a listener so that the user can select a file to upload
 		uploadButton = new JButton("Upload");
 		uploadButton.addActionListener(new UploadButtonListener());
 		
+		// indicate that the upload panel is optional
 		setBorder(BorderFactory.createTitledBorder("Optional"));
-		
 		
 		// build group file panel
 		buildGroupFilePanel();
 		
+		// add the label and panel
 		add(uploadLabel); // row 1
 		add(groupListPanel); // row 2
-		
 	}
 	
 	/**
-	 * Method that builds the group file panel.
+	 * Method that builds the upload panel with a label, 
+	 * text field, and upload button.
 	 */
 	public void buildGroupFilePanel() {
+		
+		// create new panel
 		groupListPanel = new JPanel();
 		groupListPanel.setLayout(new BorderLayout());
 		
-		blankLabel = new JLabel(" ");
+		// create labels for the file name to appear
 		groupListLabel = new JLabel("File: ");
-		// change dimensions?
 		groupListFileField = new JTextField("NO FILE");
 		groupListFileField.setEnabled(false);
 		
@@ -87,12 +83,21 @@ public class UploadPanel extends JPanel
 		groupListPanel.add(uploadButton, BorderLayout.EAST);
 	}
 	
+	/**
+	 * Method that sets the JTextField with an 
+	 * updated file name on the upload panel.
+	 * @param text The name of the file
+	 */
 	public void setGroupListFileField(String text) 
 	{
-		
 		groupListFileField.setText(text);
 	}
 	
+	/**
+	 * Method that returns the previous group file that the user uploaded to be
+	 * compared to the new group list file that will be created.
+	 * @return newFile The name of the previous group file that was uploaded by the user
+	 */
 	public File getGroupPreviousFile() 
 	{
 		return newFile;
@@ -106,23 +111,13 @@ public class UploadPanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent e) {
 	        {	
-
+	        	// select the file to upload
 	        	fileChoose.showOpenDialog(groupCreatorGUI);
 	        	newFile = fileChoose.getSelectedFile();
 	        	
+	        	// update the filename JTextField
 	        	String fileName = newFile.getName();
 	        	setGroupListFileField(fileName);
-	        	/*
-	        	try {
-					PrintWriter outTest = new PrintWriter(newFile);
-					outTest.close();
-				} 
-	        	catch (FileNotFoundException e1) 
-	        	{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	        	 */
 	        }
 		}
 	}
