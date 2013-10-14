@@ -22,7 +22,8 @@ import java.io.PrintWriter;
  * @author Rachel A Schifano
  */
 
-public class UploadPanel extends JPanel {
+public class UploadPanel extends JPanel 
+{
 
 	private GroupListApp groupListApp;
 	private GroupCreatorGUI groupCreatorGUI;
@@ -44,7 +45,8 @@ public class UploadPanel extends JPanel {
 	/**
 	 * Constructor
 	 */
-	public UploadPanel() {
+	public UploadPanel() 
+	{
 
 		setLayout(new GridLayout(3,1));
 		
@@ -60,9 +62,7 @@ public class UploadPanel extends JPanel {
 		
 		add(uploadLabel); // row 1
 		add(groupListPanel); // row 2
-		add(uploadButton); // row 3
-		
-		
+		add(uploadButton); // row 3	
 	}
 	
 	/**
@@ -85,12 +85,14 @@ public class UploadPanel extends JPanel {
 		
 	}
 	
-	public void setGroupListFileField(String text) {
+	public void setGroupListFileField(String text) 
+	{
 		
 		groupListFileField.setText(text);
 	}
 	
-	public File getGroupPreviousFile() {
+	public File getGroupPreviousFile() 
+	{
 		return newFile;
 	}
 	
@@ -98,7 +100,8 @@ public class UploadPanel extends JPanel {
 	 * Private inner class that allows the user to upload a pre-exiting group file to compare
 	 * the newly created file to to ensure students are not working with students from the last past group.
 	 */
-	private class UploadButtonListener implements ActionListener {
+	private class UploadButtonListener implements ActionListener 
+	{
 		public void actionPerformed(ActionEvent e) {
 	        {	
 
@@ -107,7 +110,17 @@ public class UploadPanel extends JPanel {
 	        	
 	        	String fileName = newFile.getName();
 	        	setGroupListFileField(fileName);
-
+	        	/*
+	        	try {
+					PrintWriter outTest = new PrintWriter(newFile);
+					outTest.close();
+				} 
+	        	catch (FileNotFoundException e1) 
+	        	{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	        	 */
 	        }
 		}
 	}

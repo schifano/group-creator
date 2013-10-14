@@ -23,6 +23,7 @@ public class GroupCreatorGUI extends JFrame {
 	private StudentOptionsGUI studentOptions;
 	private GroupCreatorSortPanel groupCreatorSortPanel;
 	private UploadPanel uploadPanel;
+	private GroupList finalGroupList;
 	private GroupListApp groupListApp;
 	private GroupListGUI groupListGUI;
 	
@@ -51,12 +52,12 @@ public class GroupCreatorGUI extends JFrame {
 		// stores the filepath of the file being operated on
 		currentFile = studentOptionFile;
 		
-		
+		groupListApp = new GroupListApp();
 		// Create a BorderLayout manager for content pane
 		setLayout(new BorderLayout());
 		
 		// Create custom panels
-		groupCreatorSortPanel = new GroupCreatorSortPanel();
+		groupCreatorSortPanel = new GroupCreatorSortPanel(groupListApp);
 		uploadPanel = new UploadPanel();
 		
 		// Call the buildButtonPanel method to create button pane.
@@ -95,25 +96,26 @@ public class GroupCreatorGUI extends JFrame {
 		buttonPanel.add(cancelButton);
 	}
 	
-	
+
 	
 	/**
 	 * Private inner class that handles the event when
 	 * the user clicks on the createGroup button
 	 */
-	private class CreateGroupButtonListener implements ActionListener {
+	private class CreateGroupButtonListener implements ActionListener 
+	{
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			// groupListApp.CreateGroupList(studentOptions.getCurrentFile(), uploadPanel.getGroupPreviousFile());
-			
+			finalGroupList = groupListApp.CreateGroupList(currentFile, uploadPanel.getGroupPreviousFile());
+			System.out.println(finalGroupList.toString());
 			
 			// pass new group list
 			// use toString
 			// GUI appears
 			// save button, back button
-		
-			groupListGUI = new GroupListGUI();
+			
+			groupListGUI = new GroupListGUI(finalGroupList);
 	      }
 	}
 	

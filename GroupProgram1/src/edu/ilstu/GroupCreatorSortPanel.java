@@ -18,7 +18,8 @@ import java.awt.event.ActionListener;
  * @author Rachel A Schifano
  */
 
-public class GroupCreatorSortPanel extends JPanel {
+public class GroupCreatorSortPanel extends JPanel 
+{
 
 	// Radio buttons for group number sorting
 	private JRadioButton studentsPerGroup;
@@ -35,8 +36,9 @@ public class GroupCreatorSortPanel extends JPanel {
 	/**
 	 * Constructor
 	 */
-	public GroupCreatorSortPanel() {
-		groupListApp = new GroupListApp();
+	public GroupCreatorSortPanel(GroupListApp groupListApp) 
+	{
+		this.groupListApp = groupListApp;
 		
 		// GridLayout manager with three rows one column
 		setLayout(new GridLayout(3,1));
@@ -64,6 +66,10 @@ public class GroupCreatorSortPanel extends JPanel {
 	    add(gender);
 	}
 	
+	public GroupListApp getGroupListApp()
+	{
+		return this.groupListApp;
+	}
 	
 	/**
 	 * Private class that takes the number of students, parses the String to an int,
@@ -114,6 +120,4 @@ public class GroupCreatorSortPanel extends JPanel {
 		}
 		
 	}
-	
-	
 }

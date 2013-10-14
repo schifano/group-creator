@@ -43,7 +43,8 @@ public class Student {
 	 * Method that returns the last name of a student.
 	 * @return lastName Last name of the student
 	 */
-	public String getLastName() {
+	public String getLastName() 
+	{
 		return lastName; 
 	}
 	

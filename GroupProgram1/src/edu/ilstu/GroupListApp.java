@@ -211,8 +211,9 @@ public class GroupListApp
 				// generate random number for index of group to try adding
 				// student
 				int newIndex = rand.nextInt(numGroups);
+				
 				numTries++;
-
+				
 				// find which labGroup the student was in the last time
 				if (lastGroup != null)
 					oldIndex = lastGroup.findStudent(studentList.getStudent(i));

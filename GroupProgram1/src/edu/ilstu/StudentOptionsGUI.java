@@ -93,7 +93,8 @@ public class StudentOptionsGUI extends JFrame
 	}
 	
 	
-	public File getCurrentFile() {
+	public File getCurrentFile()
+	{
 		return currentFile;
 	}
 	

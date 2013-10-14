@@ -140,5 +140,4 @@ public class GroupListTest {
 		assertEquals("find student in first group", 0, grpList.findStudent("John","Boomgarden"));
 		assertEquals("can't find student any group", -1, grpList.findStudent("Jim","Boomgarden"));
 	}
-
 }
