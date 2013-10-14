@@ -56,7 +56,7 @@ public class AddStudentGUI extends JFrame
 	 */
 	public AddStudentGUI(Group studentList)
 	{
-		//sets up frame
+		//sets up frame 
     	super("Add a Student");
 		setSize(800, 450);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -175,7 +175,6 @@ public class AddStudentGUI extends JFrame
     		}
     		
     		addStudentList.addStudent(fName, lName, gender);
-    		JOptionPane.showMessageDialog(null, fName + " " + lName + " was added successfully");
     		dispose();
         }
     } 

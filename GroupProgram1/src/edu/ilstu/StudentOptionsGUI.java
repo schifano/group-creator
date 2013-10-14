@@ -143,7 +143,7 @@ public class StudentOptionsGUI extends JFrame
 	{
 		studentListPanel = new JPanel();
 			
-		studentListTextArea = new JTextArea(5,30);
+		studentListTextArea = new JTextArea(10,30);
 		studentListTextArea.setText(studentList.toString());
 		studentListTextArea.setLineWrap(true);
 		studentListTextArea.setFont(new Font("Arial", Font.BOLD, 14));

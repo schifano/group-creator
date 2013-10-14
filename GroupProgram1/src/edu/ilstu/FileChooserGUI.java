@@ -22,24 +22,35 @@ import javax.swing.JTextField;
  */
 public class FileChooserGUI extends JFrame
 {
-	//These are the assets for the button panel
+	/*
+	 * These are the assets for the button panel
+	 */
 	private JPanel buttonPanel;
     private JButton createButton;
     private JButton loadExistingButton;
     
-    //These are the assets for the file panel
+    /*
+     * These are the assets for the file panel
+     */
     private JPanel filePanel;
     private JLabel blankLabel;
     private JLabel fileLabel;
     private JTextField fileField;
     
+    /*
+     * These variable are used to create a new file should the user decide
+     */
     private File newFile;
     private PrintWriter out;
     
-    //an instance of the studentOptionsGUI
+    /*
+     * an instance of the studentOptionsGUI
+     */
     private StudentOptionsGUI studentGUI;
     
-    // file chooser
+    /*
+     *  file chooser
+     */
     private final JFileChooser fc = new JFileChooser(); 
     
     /**
@@ -47,16 +58,22 @@ public class FileChooserGUI extends JFrame
      */
     public FileChooserGUI()
     {
-    	//sets up the frame
+    	/*
+    	 * sets up the frame
+    	 */
     	super("Main Menu");
 		setSize(800, 450);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		//builds the panels
+		/*
+		 * builds the panels
+		 */
 		buildButtonPanel();
 		buildFilePanel();
 		
-		//adds the filepanel to the frame
+		/*
+		 * adds the filepanel to the frame
+		 */
 		add(filePanel);
 		
 		pack();
@@ -68,19 +85,27 @@ public class FileChooserGUI extends JFrame
      */
     public void buildButtonPanel()
     {
-    	//set up the button panel
+    	/*
+    	 * set up the button panel
+    	 */
     	buttonPanel = new JPanel();
     	buttonPanel.setLayout(new FlowLayout());
     	
-    	//creates the button that allows the user to make a new list
+    	/*
+    	 * creates the button that allows the user to make a new list
+    	 */
 		createButton = new JButton("Create New List");
 		createButton.addActionListener(new createButtonListener());
 		
-		//creates the button that allows the user to load an existing list
+		/*
+		 * creates the button that allows the user to load an existing list
+		 */
 		loadExistingButton = new JButton("Load Existing List");
 		loadExistingButton.addActionListener(new loadExistingListener());
 		
-		//adds the buttons to the panel
+		/*
+		 * adds the buttons to the panel
+		 */
 		buttonPanel.add(createButton);
 		buttonPanel.add(loadExistingButton);
     }
@@ -88,17 +113,23 @@ public class FileChooserGUI extends JFrame
     //builds the file panel
     public void buildFilePanel()
     {
-    	//creates and layouts the filepanel
+    	/*
+    	 * creates and layouts the filepanel
+    	 */
     	filePanel = new JPanel();
     	filePanel.setLayout(new BorderLayout());
     	
-    	//creates the assets for the file panel
+    	/*
+    	 * creates the assets for the file panel
+    	 */
     	blankLabel = new JLabel(" ");
     	fileLabel = new JLabel("Current File: ");
     	fileField = new JTextField("NO FILE");
     	fileField.setEnabled(false);
     	
-    	//adds all of the assets to the file panel
+    	/*
+    	 * adds all of the assets to the file panel
+    	 */
     	filePanel.add(blankLabel, BorderLayout.NORTH);
     	filePanel.add(fileLabel, BorderLayout.WEST);
     	filePanel.add(fileField, BorderLayout.CENTER);
@@ -113,15 +144,18 @@ public class FileChooserGUI extends JFrame
     {
     	public void actionPerformed(ActionEvent e)
         {	
-    		fc.showSaveDialog(filePanel);
-    		newFile = fc.getSelectedFile();
-    		
     		try {
-					out = new PrintWriter(newFile);
-		    		out.close();
+        			fc.showSaveDialog(filePanel);
+        			
+        			if(fc.getSelectedFile() != null)
+        			{
+        				newFile = fc.getSelectedFile();
+        				out = new PrintWriter(newFile);
+        				out.close();
 		    		
-		    		studentGUI = new StudentOptionsGUI(newFile);
-		    		dispose();
+        				studentGUI = new StudentOptionsGUI(newFile);
+        				dispose();
+        			}
 				} 
     		catch (FileNotFoundException e1) 
     		{
@@ -136,8 +170,11 @@ public class FileChooserGUI extends JFrame
     	public void actionPerformed(ActionEvent e)
         {
     		fc.showOpenDialog(filePanel);
-     		studentGUI = new StudentOptionsGUI(fc.getSelectedFile());
-     		dispose();
+    		if(fc.getSelectedFile() != null)
+    		{
+    			studentGUI = new StudentOptionsGUI(fc.getSelectedFile());
+    			dispose();
+    		}
         }
     }
     
