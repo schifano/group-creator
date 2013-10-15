@@ -1,5 +1,15 @@
 package edu.ilstu;
 
+/*
+ * Filename: GroupCreatorGUI.java
+ * Date: 10/14/13
+ * 
+ * ULID: raschif
+ * Course: IT 226
+ * Instructor: Cathy Holbrook
+ * 
+ */
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +26,12 @@ import javax.swing.JPanel;
  * group file to compare the new group file to. This GUI provides a Create
  * Group button that will launch the GroupListGUI where the new group file
  * will appear.
- * @author Rachel A Schifano
+ * @author Rachel A Schifano, John Boomgarden, Corbin Sumner
  */
 
 public class GroupCreatorGUI extends JFrame {
-	
+
+	private static final long serialVersionUID = 1L;
 	// instance variables
 	private StudentOptionsGUI studentOptions;
 	private GroupCreatorSortPanel groupCreatorSortPanel;
