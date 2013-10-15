@@ -29,7 +29,7 @@ import javax.swing.JTextArea;
  * Description: Class that displays the newly generated group list
  * and allows the user to either save or go back to the previous 
  * GroupCreatorGUI frame to reselect sorting options.
- * @author Rachel A Schifano
+ * @author Rachel A Schifano, John Boomgarden, Corbin Sumner
  */
 
 public class GroupListGUI extends JFrame 
