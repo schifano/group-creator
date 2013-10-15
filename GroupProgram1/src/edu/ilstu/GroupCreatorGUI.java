@@ -121,7 +121,7 @@ public class GroupCreatorGUI extends JFrame {
 			// is equal to 0. Display an error message. 
 			if(groupListApp.getNumGroups() == 0 && groupListApp.getGroupSize() == 0)
 			{
-				JOptionPane.showMessageDialog(null, "Please Select a Sort Option", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Please select a valid sort option.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{

@@ -24,11 +24,13 @@ import java.io.FileNotFoundException;
  */
 public class GroupListApp
 {
-	private int numGroups;  // Total number of groups desired. 
-	private int groupSize;  // Number of students allowed per group.
+	private int numGroups; // Total number of groups desired.
+	private int groupSize; // Number of students allowed per group.
 	private int numFemales; // Number of females allowed per group.
-	private int numMales;   // Number of males allowed per group.
-	private boolean genderBiased;  //True to indicate the user wants an even gender mix
+	private int numMales; // Number of males allowed per group.
+	private boolean genderBiased; // True to indicate the user wants an even
+									// gender mix
+	private int remainders;
 
 	/**
 	 * Constructor which initializes all variables
@@ -39,6 +41,7 @@ public class GroupListApp
 		groupSize = 0;
 		numFemales = 0;
 		genderBiased = false;
+		remainders = 0;
 	}
 
 	/**
@@ -73,18 +76,18 @@ public class GroupListApp
 				studentList.addStudent(tmpStudent);
 			}
 		}
-		
+
 		catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
-		} 
-		
+		}
+
 		finally
 		{
 			if (in != null)
 				in.close();
 		}
-		
+
 		if (groupFile != null)
 		{
 			try
@@ -100,22 +103,20 @@ public class GroupListApp
 					StringTokenizer st = new StringTokenizer(str);
 					while (st.hasMoreElements())
 					{
-					Student tmpStudent = new Student();
-					tmpStudent.setFirstName(st.nextToken());
-					tmpStudent.setLastName(st.nextToken());
-					tmpStudent.setGender(st.nextToken());
+						Student tmpStudent = new Student();
+						tmpStudent.setFirstName(st.nextToken());
+						tmpStudent.setLastName(st.nextToken());
+						tmpStudent.setGender(st.nextToken());
 
-					tempList.addStudent(tmpStudent);
+						tempList.addStudent(tmpStudent);
 					}
 
 					lastGroup.addGroup(tempList);
 				}
-			}
-			catch (FileNotFoundException e)
+			} catch (FileNotFoundException e)
 			{
 				e.printStackTrace();
-			}
-			finally
+			} finally
 			{
 				if (in != null)
 					in.close();
@@ -133,11 +134,13 @@ public class GroupListApp
 	 * females per group, the number of males per group, and then will create
 	 * the groups by checking the last lab group the student was in.
 	 * 
-	 * @param studentList  list of all students in class
-	 * @param lastGroup   list of lab groups from last time
-	 * @return   list of lab groups
+	 * @param studentList
+	 *            list of all students in class
+	 * @param lastGroup
+	 *            list of lab groups from last time
+	 * @return list of lab groups
 	 */
-	
+
 	public GroupList CreateGroupList(Group studentList, GroupList lastGroup)
 	{
 		// initialize oldIndex to -1 since that is what is returned if the
@@ -174,7 +177,7 @@ public class GroupListApp
 		/* create a group for each bucket of the groupList ArrayList */
 		/*                                                                       */
 		/* ********************************************************************* */
-
+		int saveRemainders = this.remainders;
 		for (int j = 0; j < this.numGroups; j++)
 		{
 			Group tmpGroup = new Group();
@@ -211,9 +214,9 @@ public class GroupListApp
 				// generate random number for index of group to try adding
 				// student
 				int newIndex = rand.nextInt(numGroups);
-				
+
 				numTries++;
-				
+
 				// find which labGroup the student was in the last time
 				if (lastGroup != null)
 					oldIndex = lastGroup.findStudent(studentList.getStudent(i));
@@ -236,7 +239,8 @@ public class GroupListApp
 							studentInGroup = true;
 					}
 				}
-				if ((!studentInGroup | numTries >= this.numGroups*this.numGroups)
+
+				if ((!studentInGroup |( numTries >= this.numGroups * 2))
 						&& correctNumbers(groups.getGroup(newIndex),
 								studentList.getStudent(i)))
 				{
@@ -244,18 +248,24 @@ public class GroupListApp
 					numTries = 0;
 					groups.getGroup(newIndex).addStudent(
 							studentList.getStudent(i));
+					if ((groups.getGroup(newIndex).getGroupSize() > this.groupSize))
+						remainders --;
 				}
 			}
 		}
+		this.remainders = saveRemainders;
 		return groups;
 	}
-/**
- *  This method will set limits for how many students of each gender belong in each 
- *  group. If the groups do not require a mixture based on gender, then the limits 
- *  for each group will be set to the maximum number of students for that group.
- *  
- * @param studentList  list of all students
- */
+
+	/**
+	 * This method will set limits for how many students of each gender belong
+	 * in each group. If the groups do not require a mixture based on gender,
+	 * then the limits for each group will be set to the maximum number of
+	 * students for that group.
+	 * 
+	 * @param studentList
+	 *            list of all students
+	 */
 	public void setGenderLimits(Group studentList)
 	{
 		if (genderBiased)
@@ -273,7 +283,7 @@ public class GroupListApp
 			// once we know how many total females there are, then we will
 			// divide that
 			// number by the total number of groups.
-			
+
 			if (totalFemales % numGroups == 0)
 			{
 				this.numFemales = totalFemales / numGroups;
@@ -283,24 +293,23 @@ public class GroupListApp
 				this.numFemales = (totalFemales / numGroups) + 1;
 				this.numMales = groupSize - this.numFemales + 1;
 			}
-		} 
-		else
+		} else
 		{
 			this.numFemales = this.groupSize;
 			this.numMales = this.groupSize;
 		}
-		//System.out.println("Females: " + "total:" + this.numFemales + "\n" + "numGrps: "+numGroups);
-		//System.out.println("Males: " + "total:" + this.numMales + "\n" + "numGrps: "+numGroups);
 	}
 
 	/**
 	 * This method will determine if it is OK to add a student to a group.
 	 * 
-	 * @param grp Group to which we would like to add student. 
-	 * @param stu1 Student object which needs to be added. 
+	 * @param grp
+	 *            Group to which we would like to add student.
+	 * @param stu1
+	 *            Student object which needs to be added.
 	 * 
-	 * @return  true if adding the student will not break any of the
-	 * allowed limits on the group. 
+	 * @return true if adding the student will not break any of the allowed
+	 *         limits on the group.
 	 */
 	public boolean correctNumbers(Group grp, Student stu1)
 	{
@@ -309,20 +318,23 @@ public class GroupListApp
 		// if we are equal to or greater than the maximum number in the group,
 		// we can't add the student
 
-		if (grp.getGroupSize() >= this.groupSize)
+		
+		if ((grp.getGroupSize() >= this.groupSize && remainders <= 0)|
+			(grp.getGroupSize() >= this.groupSize +1 && remainders > 0))	
 			OKToAddToGroup = false;
 
 		// if the student being added is female, and that student will cause
 		// there to be too many females in the group, we can't add that student.
-		
+
 		// Likewise for males.
-		
+
 		if (stu1.getGender().charAt(0) == 'F'
 				&& grp.getNumberFemalesInGroup() >= this.numFemales)
 			OKToAddToGroup = false;
 		else if (stu1.getGender().charAt(0) == 'M'
 				&& grp.getNumberMalesInGroup() >= this.numMales)
 			OKToAddToGroup = false;
+
 		return OKToAddToGroup;
 	}
 
@@ -338,11 +350,14 @@ public class GroupListApp
 	{
 		if (groupSize != 0)
 		{
-			if (fullGroupSize % groupSize == 0)
+			if (fullGroupSize % groupSize != 0)
+			{
 				this.numGroups = fullGroupSize / groupSize;
+				remainders = fullGroupSize % groupSize;
+			}
 			else
 			{
-				this.numGroups = (fullGroupSize / groupSize) + 1;
+				this.numGroups = fullGroupSize / groupSize;
 			}
 		}
 	}
@@ -357,7 +372,7 @@ public class GroupListApp
 	 */
 	public void setNumGroups(int numGroups)
 	{
-		this.numGroups = numGroups;
+		this.numGroups = Math.abs(numGroups);
 		this.groupSize = 0;
 	}
 
@@ -372,7 +387,7 @@ public class GroupListApp
 	public void setGroupSize(int groupSize)
 	{
 		this.numGroups = 0;
-		this.groupSize = groupSize;
+		this.groupSize = Math.abs(groupSize);
 	}
 
 	/**
@@ -449,12 +464,13 @@ public class GroupListApp
 	{
 		if (numGroups != 0)
 		{
-			if (fullGroupSize % numGroups == 0)
+			if (fullGroupSize % numGroups != 0)
 			{
+				remainders = fullGroupSize % numGroups;
 				this.groupSize = fullGroupSize / numGroups;
 			} else
 			{
-				this.groupSize = (fullGroupSize / numGroups) + 1;
+				this.groupSize = (fullGroupSize / numGroups);
 			}
 		}
 	}

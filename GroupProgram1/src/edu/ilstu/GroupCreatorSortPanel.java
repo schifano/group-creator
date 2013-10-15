@@ -110,10 +110,12 @@ public class GroupCreatorSortPanel extends JPanel
 		public void actionPerformed(ActionEvent e) {
 			String groupNumber = JOptionPane.showInputDialog(null,
 					"Enter the number of groups.");
-			
+			if (groupNumber !=null) 
+			{
 			int groupNum = Integer.parseInt(groupNumber);
 			
 			groupListApp.setNumGroups(groupNum);
+			}
 		}
 	}
 	
