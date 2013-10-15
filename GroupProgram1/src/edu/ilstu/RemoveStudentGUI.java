@@ -20,19 +20,25 @@ import javax.swing.JTextField;
 public class RemoveStudentGUI extends JFrame
 {
 
-	//first name panel assets
+	/*
+	 * first name panel assets
+	 */
 	private	JPanel fNamePanel; 
 	private JLabel fNameLabel;
 	private JTextField fNameField;
 	private String fName;
 	
-	//last name panel assets
+	/*
+	 * last name panel assets
+	 */
 	private JPanel lNamePanel;
 	private JLabel lNameLabel;
 	private JTextField lNameField;
 	private String lName;
 	
-	
+	/*
+	 * remove assets 
+	 */
 	private JPanel buttonPanel;
 	private JButton removeButton;
 	private JButton cancelButton;
@@ -45,7 +51,9 @@ public class RemoveStudentGUI extends JFrame
 	 */
 	public RemoveStudentGUI(Group studentList)
 	{
-		//sets up the frame
+		/*
+		 * sets up the frame
+		 */
     	super("Remove a Student");
 		setSize(800, 450);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,12 +61,16 @@ public class RemoveStudentGUI extends JFrame
 		
 		removeStudentList = studentList;
 		
-		//builds the panels
+		/*
+		 * builds the panels
+		 */
 		buildFirstNamePanel();
 		buildLastNamePanel();
 		buildButtonPanel();
 		
-		//adds the panels
+		/*
+		 * adds the panels
+		 */
 		add(fNamePanel);
 		add(lNamePanel);
 		add(buttonPanel);
@@ -88,17 +100,25 @@ public class RemoveStudentGUI extends JFrame
 	 */
 	public void buildLastNamePanel()
 	{
-		//sets up the assets of the last name panel
+		/*
+		 * sets up the assets of the last name panel
+		 */
 		lNamePanel = new JPanel();
 		lNamePanel.setLayout(new FlowLayout());
 		lNameLabel = new JLabel("Last Name: ");
 		lNameField = new JTextField(15);
 		
-		//adds assets of the last name panel
+		/*
+		 * adds assets of the last name panel
+		 */
 		lNamePanel.add(lNameLabel);
 		lNamePanel.add(lNameField);
 	}
 	
+	
+	/**
+	 * Builds the panel that displays the buttons
+	 */
 	public void buildButtonPanel()
 	{
 		buttonPanel = new JPanel();
@@ -114,6 +134,11 @@ public class RemoveStudentGUI extends JFrame
 		buttonPanel.add(cancelButton);
 	}
 	
+	/**
+	 * 
+	 * Initiates the removal of a student from the list
+	 * 
+	 */
 	public class removeListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -138,6 +163,11 @@ public class RemoveStudentGUI extends JFrame
 		}
 	}
     
+	/**
+	 * Allows the user to cancel the removal of a student
+	 * @author Corbin Sumner
+	 *
+	 */
 	public class cancelListener implements ActionListener
     {
     	public void actionPerformed(ActionEvent e)
