@@ -1,5 +1,15 @@
 package edu.ilstu;
 
+/*
+ * Filename: GroupCreatorSortPanel.java
+ * Date: 10/14/13
+ * 
+ * ULID: raschif
+ * Course: IT 226
+ * Instructor: Cathy Holbrook
+ * 
+ */
+
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -15,11 +25,12 @@ import java.awt.event.ActionListener;
 /**
  * Description: GroupCreatorGUI that generates the GUI that allows a user to
  * select the various ways of creating a group.
- * @author Rachel A Schifano
+ * @author Rachel A Schifano, John Boomgarden, Corbin Sumner
  */
 
 public class GroupCreatorSortPanel extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
 
 	// Radio buttons for group number sorting
 	private JRadioButton studentsPerGroup;
