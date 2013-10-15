@@ -34,6 +34,8 @@ import javax.swing.JTextArea;
 
 public class GroupListGUI extends JFrame 
 {
+	private static final long serialVersionUID = 1L;
+
 	// instance variables
 	private JPanel groupListPanel;
 	private JPanel buttonPanel;
