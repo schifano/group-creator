@@ -1,5 +1,15 @@
 package edu.ilstu;
 
+/*
+ * Filename: UploadPanel.java
+ * Date: 10/14/13
+ * 
+ * ULID: raschif
+ * Course: IT 226
+ * Instructor: Cathy Holbrook
+ * 
+ */
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
@@ -18,7 +28,7 @@ import java.io.File;
  * Description: The upload panel that sits on the GroupCreatorGUI frame. The upload panel
  * gives the user the option of uploading a previous group file to do a comparison to before
  * generating a new group list file.
- * @author Rachel A Schifano
+ * @author Rachel A Schifano, John Boomgarden, Corbin Sumner
  */
 
 public class UploadPanel extends JPanel 
