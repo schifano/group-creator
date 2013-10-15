@@ -1,7 +1,7 @@
 package edu.ilstu;
 
 /*
- * Filename: GroupListGUI.java
+ * Filename: Student.java
  * Date: 10/14/13
  * 
  * ULID: raschif
