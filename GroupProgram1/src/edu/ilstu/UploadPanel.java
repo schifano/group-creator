@@ -33,6 +33,8 @@ import java.io.File;
 
 public class UploadPanel extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
+
 	// instance variables
 	private GroupCreatorGUI groupCreatorGUI;
 	
